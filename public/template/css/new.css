@@ -1,0 +1,29 @@
+table{
+   border-collapse:collapse;
+}
+th td{
+	padding: 2px;
+}
+.checkbox{
+	width: 25px;
+	float:left;
+}
+.name{
+	width: 85px;
+	float:right;
+}
+td{
+	min-width: 110px;
+	padding: 4px 0px 20px 0px;
+}
+.hour{
+	width: 110px;
+}
+.start > .GSHstart{
+	float: left;
+	width: 50px;
+}
+.end > .GSHend{
+	float: right;
+	width: 50px;
+}

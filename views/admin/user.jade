@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+	head
+		title Welcome!
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		<!-- link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")-->
+		link(rel="stylesheet" href="/public/css/admin/nav.css")
+		link(rel="stylesheet" href="/public/css/admin/user.css")
+	body
+		include ./nav.jade
+		div#content
+			div#box
+				div#left
+					header #{user.name.first} #{user.name.last}
+						span#email ( #{user.email} )
+					hr
+					div#body
+						form( type="form" action='/admin/users/#{user.id}?_method=PUT' method='post' enctype='application/x-www-form-urlencoded' )
+							p
+								label Name:
+								input.name(type="text" value="#{user.name.first}" name="first")
+								input.name(type="text" value="#{user.name.last}" name="last")
+							p
+								label Email:
+								input(type="text" value="#{user.email}" disabled)
+							div#permissions Permissions:
+								p.permissions
+									label Teacher: ( #{user.permissions.teacher} )
+									input(type='checkbox', name='isteacher', checked=('#{user.permissions.teacher}'==='true' ? "checked" : undefined))
+								p.permissions
+									label Admin: ( #{user.permissions.admin} )
+									input(type='checkbox', name='isadmin', checked=('#{user.permissions.admin}'==='true' ? "checked" : undefined))
+								p.permissions
+									label View_Absents: ( #{user.permissions.view_absents} )
+									input(type='checkbox', name='isview_absents', checked=('#{user.permissions.view_absents}'==='true' ? "checked" : undefined))
+							div#button
+								input(type='hidden',value='PUT',name='_method')
+								button.btn(type='submit').
+									Update

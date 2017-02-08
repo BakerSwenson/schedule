@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+	head
+		title Welcome!
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		<!-- link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")-->
+		link(rel="stylesheet" href="/public/css/admin/nav.css")
+		link(rel="stylesheet" href="/public/css/admin/error/list.css")
+	body
+		include ../nav.jade
+		div#content
+			center
+				header Unresolved Students
+			div#left
+				div#options
+					div.optBtnSearch
+						form( type="form" action='/admin/errors/search' method='post' enctype='application/x-www-form-urlencoded' )
+								input(name="name" type="text" placeholder="Search name!")
+					div.optBtn
+						a.btn(href="#") Slide thru
+					div.optBtn
+						a.btn(href="#") Resolve all
+			div#right
+				table(style="border-collapse:collapse")
+					tbody
+						tr
+							th Time Stamp
+							th Name
+							th Reason
+							th
+								- each pass, i in passes
+									if(pass.error.toggle)
+										tr
+											td #{pass.error.date}
+											td #{pass.username}
+											td #{pass.error.message}
+											td 
+												p#p
+													a.first(href="/admin/error/#{pass._id}") View 
+													a.second(href="/admin/errors/resolve/#{pass._id}") Resolve

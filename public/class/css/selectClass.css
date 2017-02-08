@@ -1,0 +1,56 @@
+html, body{
+	margin: 0px;
+	padding: 15px 0px 0px 0px;
+	background-color: #F1F1F1;
+}
+#box{
+	width: 450px;
+	margin: 0 auto;
+	padding: 20px 50px;
+	background-color: #FFF;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+}
+#heading{
+	border-bottom: 1px solid #F5F5F5;
+}
+#headertext{
+	text-align: left;
+	font-size: 21px;
+	padding: 10px 10px 0px 10px;
+	color: #666;
+}
+.topnav1{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.classlink{
+	color: #666;
+	text-decoration: none;
+}
+#classlist{
+}
+.classitem{
+	margin: 2.5px;
+	padding: 30px 30px;
+	border-radius: 5px;
+	border: 1px solid #F5F5F5;
+	font-size: 19px;
+	text-align: center;
+	list-style-type: none;
+	color: #313131;
+	text-decoration: none;
+}
+.classitem:hover{
+	color: #0000EE;
+	border: 1px solid #0000EE;
+	text-decoration: underline;
+}
+#option{
+	margin: 50px 0px 10px 0px;
+	padding: 3px;
+	color: #4D4D4D;
+	font-size: 16px;
+}
+.optionlink{
+	color: #0000EE;
+}

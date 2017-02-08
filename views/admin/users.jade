@@ -1,0 +1,50 @@
+doctype html
+html(lang="en")
+	head
+		title Welcome!
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		<!-- link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")-->
+		link(rel="stylesheet" href="/public/css/admin/nav.css")
+		link(rel="stylesheet" href="/public/css/admin/error/list.css")
+		link(rel="stylesheet" href="/public/css/admin/users.css")
+	body
+		include ./nav.jade
+		div#content
+			center
+				header Users
+			div#left
+				div#options
+					div.optBtnSearch
+						form( type="form" action='/admin/users' method='post' enctype='application/x-www-form-urlencoded' )
+								input(name="name" type="text" placeholder="Email")
+					div.optBtn
+						a.btn(href="/admin/sort/teacher") Teachers
+					div.optBtn
+						a.btn(href="/admin/sort/admin") Admins
+			div#right
+				table(style="border-collapse:collapse")
+					tbody
+						tr
+							th Role
+							th Name
+							th Email
+							th Actions
+								- each user, i in users
+										tr
+											td
+												if(user.permissions.admin)
+													span ADMIN
+												else if(user.permissions.teacher)
+													span TEACHER
+												else if(user.permissions.view_absents)
+													span ABSENT VIEWER
+												else
+													span USER
+											td
+												p #{user.name.first} #{user.name.last}
+											td
+												p #{user.email}
+											td
+												p#p
+													a.first(href="/admin/user/#{user._id}") More 
+													a.second(href="/admin/old/#{user._id}") Previous

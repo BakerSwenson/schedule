@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+    head
+        title Dashboard
+        link(rel="stylesheet" href="/public/class/css/dashboard.css")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+    script(src="http://localhost:3000/public/class/dashboard.js")
+    body
+        div.container
+            header
+                div#logoArea
+                    img#logo(src="/public/images/logo.jpg")
+                div#logout
+                    a.logoutBtn(href="/logout") Logout
+            div#siteNav
+                div#logoname Class Name HERE
+                div.where Home
+            div#nav
+                ul#navUi
+                    li.navLi Home
+                    li.navLi Pending Students
+                    li.navLi Past Classes
+                    li.navLi Settings
+            div.page
+                div.break
+                div#searchSection
+                div.table
+                    ul
+                        li
+                            div.tname Baker Swenson
+                            div.taction
+                                a(href="#") Remove
+                        li
+                            div.tname Jamie C Hawk
+                            div.taction
+                                a(href="#") Remove
+                        li
+                            div.tname Barry myface
+                            div.taction
+                                a(href="#") Remove
+                        li
+                            div.tname In datass
+                            div.taction
+                                a(href="#") Remove
+                div

@@ -1,0 +1,72 @@
+doctype html
+html(lang="en")
+    head
+        title Template Maker
+        include partials/scripts.jade
+        link(rel="stylesheet" href="/public/template/css/new.css")
+    body
+        form#form( type="form" action='/template/new' method='post' enctype='application/x-www-form-urlencoded' )
+            table(border="1")
+                tr
+                    th.blank
+
+                    th.monday
+                        div.checkbox
+                            input#monday(type="checkbox" name="monday" checked="checked")
+                        div.name Monday
+                    th.tuesday
+                        div.checkbox
+                            input#tuesday(type="checkbox" name="tuesday" checked="checked")
+                        div.name Tuesday
+                    th.wednesday
+                        div.checkbox
+                            input#wednesday(type="checkbox" name="wednesday" checked="checked")
+                        div.name Wednesday
+                    th.thursday
+                        div.checkbox
+                            input#thursday(type="checkbox" name="thursday" checked="checked")
+                        div.name Thursday
+                    th.friday
+                        div.checkbox
+                            input#friday(type="checkbox" name="friday" checked="checked")
+                        div.name Friday
+                tr
+                    th.label GSH
+                    td
+                        div.time.GSH
+                            div.hour Time:
+                            div.start
+                                input#mondayGSHstart.GSHstart(name="mondayGSHstart" value="")
+                            div.end
+                                input#mondayGSHend.GSHend(name="mondayGSHend" value="")
+                    td
+                        div.time.GSH
+                            div.hour Time:
+                            div.start
+                                input#tuesdayGSHstart.GSHstart(name="tuesdayGSHstart" value="")
+                            div.end
+                                input#tuesdayGSHend.GSHend(name="tuesdayGSHend" value="")
+                    td
+                        div.time.GSH
+                            div.hour Time:
+                            div.start
+                                input#wednesdayGSHstart.GSHstart(name="wednesdayGSHstart" value="")
+                            div.end
+                                input#wednesdayGSHend.GSHend(name="wednesdayGSHend" value="")
+                    td
+                        div.time.GSH
+                            div.hour Time:
+                            div.start
+                                input#thursdayGSHstart.GSHstart(name="thursdayGSHstart" value="")
+                            div.end
+                                input#thursdayGSHend.GSHend(name="thursdayGSHend" value="")
+                    td
+                        div.time.GSH
+                            div.hour Time:
+                            div.start
+                                input#fridayGSHstart.GSHstart(name="fridayGSHstart" value="")
+                            div.end
+                                input#fridayGSHend.GSHend(name="fridayGSHend" value="")
+            div
+                input(type='text' placeholder="Name this template..." name="name")
+                input(type="submit" value="Submit")

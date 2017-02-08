@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+    head
+        title Choose Class
+        include partials/scripts.jade
+        link(rel="stylesheet" href="/public/class/css/selectClass.css")
+    body
+        div#container
+            div#box
+                div#heading 
+                    div#headertext Choose Class
+                div#body
+                    ul#classlist
+                    - each class1 in classes
+                        a.classlink(href="/class/#{class1._id}")
+                            li.classitem
+                                div.classitemname #{class1.class_name}
+                div#option
+                    if(classes.length > 0)
+                        div#createclass Create another class 
+                            a.optionlink(href="/class/create") here
+                    else
+                        div#createclass No classes found! Create one 
+                            a.optionlink(href="/class/create") here
+

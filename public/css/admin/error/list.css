@@ -1,0 +1,81 @@
+header{
+	font-size: 45px;
+}
+#left{
+	background-color: #fff;
+	width: 300px;
+	height: 100%;
+	float: left;
+	position: fixed;
+	margin-top: -40px;
+}
+#right{
+	display: inline-block;
+	background-color: #FFF;
+	width: calc(100% - 300px);
+	height: 100%;
+	float: right;
+}
+#options{
+	background-color: #FFF;
+	height: 350px;
+	border-radius: 5px;
+	border: 2px solid #22313F;
+	margin: 10px 25px;
+	text-align: center;
+	-webkit-box-shadow: 10px 10px 61px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 10px 10px 61px 0px rgba(0,0,0,0.4);
+    box-shadow: 10px 10px 61px 0px rgba(0,0,0,0.4);
+}
+.optBtnSearch{
+	padding: 60px 0px 0px 0px;
+}
+.optBtn{
+	display: block;
+	padding: 20px 0px;
+	font-size: 20px;
+}
+a{
+	color: #22313f;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
+input{
+	display: block;
+	width: calc(100% - 6px);
+	font-size: 30px;
+	color: #22313f;
+	text-align: center;
+}
+table{
+	width: 100%;
+	height: auto;
+}
+th{
+	text-align: left;
+	border-bottom: 2px solid #22313F;
+}
+tr:nth-child(even){
+	background-color: #F1F1F1;
+}
+td{
+	height: 40px;
+}
+p#p{
+	border-radius: 3px;
+	border: 1px solid #22313F;
+	display: inline;
+}
+p > a:hover{
+	font-weight: bold;
+	text-decoration: none;
+}
+.first{
+	border-right: 1px solid #22313F;
+	padding-left: 3px;
+}
+.second{
+	padding: 0 3px;
+}

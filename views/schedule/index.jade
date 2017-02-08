@@ -1,0 +1,104 @@
+doctype html
+html(lang="en")
+    head
+        title Schedule :: #{user.name.first} #{user.name.last}
+        include partials/scripts.jade
+        link(rel="stylesheet" href="/public/schedule/css/index.css")
+    body
+        div#page
+            div.sector
+                div#notifications(style="display:none;") 
+                    div#ntext
+                    div#nx 
+                        a(href="#")
+                            span.numberCircle X
+
+            div.sector
+                table#schedule(border-collapse)
+                    tr.1
+                        th
+                        th#monday Monday
+                        th#tuesday Tuesday
+                        th#wednesday Wedesday
+                        th#thursday Thursday
+                        th#friday Friday
+                    tr.2
+                        th#h1 First Hour
+                        td#m-1 class holder
+                        td#tu-1 class holder
+                        td#w-1 class holder
+                        td#th-1 class holder
+                        td#f-1 class holder
+                    tr.3
+                        th#h2 Second Hour
+                        td#m-2 Unavailable
+                        td#tu-2 class holder
+                        td#w-2 class holder
+                        td#th-2 class holder
+                        td#f-2 class holder
+                    tr.4
+                        th#h3 Third Hour
+                        td#m-3 class holder
+                        td#tu-3 class holder
+                        td#w-3 class holder
+                        td#th-3 class holder
+                        td#f-3 class holder
+                    tr.5
+                        th#hS GSH
+                        td#m-S class holder
+                        td#tu-S class holder
+                        td#w-S class holder
+                        td#th-S class holder
+                        td#f-S class holder
+                    tr.6
+                        th#h4 Fourth Hour
+                        td#m-4 class holder
+                        td#tu-4 class holder
+                        td#w-4 class holder
+                        td#th-4 class holder
+                        td#f-4 class holder
+                    tr.7
+                        th#h5 Fifth Hour
+                        td#m-5 class holder
+                        td#tu-5 class holder
+                        td#w-5 class holder
+                        td#th-5 class holder
+                        td#f-5 class holder
+                div#classForm(style="display:none")
+                    form#classSearch(onsubmit="return false;" autocomplete="false")
+                        select(name="day")#sday(style="display:none")
+                            option(val="Monday") Monday
+                            option(val="Tuesday") Tuesday
+                            option(val="Wednesday") Wednesday
+                            option(val="Thursday") Thursday
+                            option(val="Friday") Friday
+                        select(name="hour")#shour(style="display:none")
+                            option(val="Hour 1") Hour 1
+                            option(val="Hour 2") Hour 2
+                            option(val="Hour 3") Hour 3
+                            option(val="GSH") GSH
+                            option(val="Hour 4") Hour 4
+                            option(val="Hour 5") Hour 5
+                        div.classSelected 
+                            span#selday
+                            |, 
+                            span#selhour
+                        div#searchContainer
+                            input#searchTeacher(name="search" type="text" placeholder="Find Class")
+                            input#searchTeacherBtn(type="submit" value="Search")
+                        div#results(style="display:none;")
+                            div#rheader Results ...
+                            ul#resultlist
+                                li.resultitem
+                                    div.breakleft Baker's GSH
+                                    div.breakright
+                                        button.joinClass Join
+                                li.resultitem
+                                    div.breakleft Baker's GSH
+                                    div.breakright
+                                        button.joinClass Join
+                                li.resultitem
+                                    div.breakleft Baker's GSH
+                                    div.breakright
+                                        button.joinClass Join
+            div.sector#footer Footer

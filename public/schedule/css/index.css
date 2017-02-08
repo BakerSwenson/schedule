@@ -1,0 +1,191 @@
+html body{
+	background-color: #FFF;
+	margin: 0px;
+	padding: 0px;
+	margin: 0;
+	padding: 0;
+}
+.numberCircle {
+	display: block;
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+
+    width: 20px;
+    height: 20px;
+
+    background: #fff;
+    color: #666;
+    text-align: center;
+
+    font: 19px Arial, sans-serif;
+}
+.numberCircle:hover {
+	display: block;
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+
+    width: 20px;
+    height: 20px;
+
+    background: #666;
+    color: #FFF;
+    text-align: center;
+
+    font: 19px Arial, sans-serif;
+}
+#notifications{
+	width: 100%;
+	background-color: #e74c3c;
+	height: 40px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 20px;
+}
+#ntext{
+	padding: 11px 10px;
+	width: 960px;
+	float: left;
+	color: #FFF;
+}
+#nx{
+	padding: 10px;
+	width: 30px;
+	float: right;
+}
+#nx > a{
+	text-decoration: none;
+}
+.sector{
+	overflow: hidden;
+}
+#page{
+	background-color: #f1f1f1;
+	width: 1030px;
+	margin: 0 auto;
+}
+.selectedHeader {
+	background-color: #F1F1F1;
+}
+.selectedClass {
+	opacity: 1;
+}
+td{
+	width: 136px;
+	padding: 0;
+	margin: 0;
+	background-color: #FFF;
+	cursor: pointer; 
+	opacity: 0.5;
+}
+.time{
+	background-color: #FFF;
+	padding: 3px 5px;
+	border-bottom: 1px solid #666;
+}
+.body{
+	background-color: #fff;
+	padding: 5px;
+}
+.className{
+	height: 82px;
+	color: #2C3E50;
+	font-size: 19px;
+	word-wrap: break-word;
+}
+.changeable{
+	width: 108px;
+	font-size: 14px;
+	color: #666;
+	float: left;
+}
+.d {
+	height: 34px;
+	background: repeating-linear-gradient(
+	  45deg,
+	  #F9F9F9,
+	  #F9F9F9 40px,
+	  #Fff 40px,
+	  #Fff 80px
+	);
+	cursor: not-allowed;
+	color: #666;
+	font-size: 15px;
+	text-align: center;
+}
+.dr > .d{
+	height: 40px;
+}
+#schedule {
+    border-collapse: collapse;
+    width: 800px;
+    float: left;
+    margin: 20px 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+table, th, td {
+    border: 1px solid #2C3E50;
+}
+
+th{
+	padding: 8px;
+	background-color: #FFF;
+	font-weight: bold;
+}
+#scheduleBox{
+	float: left;
+}
+#classForm{
+	float: right;
+	width: 208px;
+	margin: 20px 5px;
+	border: 1px solid #2C3E50;
+	background-color: #FFF;
+}
+.classSelected{
+	font-size: 18px;
+	padding: 5px;
+}
+#searchContainer{
+	margin: 5px;
+}
+#searchTeacher{
+	width: 136px;
+	font-size: 16px;
+}
+#searchTeacherBtn{
+	width: 52px;
+}
+#results{
+	padding: 3px;
+	border-top: 1px solid #2C3E50;
+}
+#rheader{
+	font-size: 16px;
+	color: #2C3E50;
+}
+ul{
+	list-style-type: none;
+	padding: 10px;
+}
+li{
+	height: 20px;
+	padding: 5px;
+}
+.breakleft{
+	float: left;
+	width: 132px;
+}
+.breakright{
+	float: right;
+	width: 40px;
+}
+#footer{
+	position: relative;
+	bottom: 0;
+	background-color: #f1f1f1;
+    width: 100%;
+	height: 120px;
+	margin-top: 260px;
+}
+.classPending{
+	background-color: #E4F1FE;
+}

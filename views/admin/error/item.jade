@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+	head
+		title Welcome!
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		<!-- link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")-->
+		link(rel="stylesheet" href="/public/css/admin/nav.css")
+		link(rel="stylesheet" href="/public/css/admin/error/item.css")
+	body
+		include ../nav.jade
+		div#content
+			div#box
+				div#heading
+					div#headingMsg Absent:
+				div#body
+					div#data
+						p Absent Reason: 
+							span #{pass.error.message}
+						p Date: 
+							span #{pass.error.date.toLocaleDateString("en-US")}
+						p Class: 
+							a(href="#")
+								span #{pass.teacher}
+					div#btn
+						a.btn(href="/admin/errors/resolve/#{pass._id}") Resolve
