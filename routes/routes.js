@@ -12,7 +12,7 @@ router.get('/', ensureAuthenticated, inUser, function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-  res.send('<a href="/auth/google">LOGIN HERE</a>')
+  res.redirect('/auth/google');
 });
 
 // GET /auth/google
