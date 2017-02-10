@@ -5,7 +5,7 @@ var id = url.split('/')[2];
 $.get( "/class/ajax/class/"+id, function( class1) {
 	console.log(class1);
 	if(class1 === null || class1.open == false){
-		window.location = 'http://138.197.133.246:80/class';
+		window.location = 'http://138.197.133.246/class';
 	}
 	var students = class1.students;
 		students.forEach(function(item){
