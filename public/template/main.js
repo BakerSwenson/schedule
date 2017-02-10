@@ -93,7 +93,7 @@ $(document).ready(function(){
 		var formData = {id:id}; //Array 
 		 
 		$.ajax({
-		    url : "http://localhost:3000/template/ajax/fetchTemplate",
+		    url : "http://138.197.133.246/template/ajax/fetchTemplate",
 		    type: "GET",
 		    data : formData,
 		    success: function(data)
@@ -122,7 +122,7 @@ $(document).ready(function(){
     function setActive(id){
         var formData = {id:id};
         $.ajax({
-            url: "http://localhost:3000/template/ajax/setActive",
+            url: "http://138.197.133.246/template/ajax/setActive",
             type: "GET",
             data: formData,
             success: function(data){
@@ -138,7 +138,7 @@ $(document).ready(function(){
         var formData = {id:id};
         $('#delete').html('Removing...');
         $.ajax({
-            url: "http://localhost:3000/template/ajax/deleteTemplate",
+            url: "http://138.197.133.246/template/ajax/deleteTemplate",
             type: "GET",
             data: formData,
             success: function(data){
