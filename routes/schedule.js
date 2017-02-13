@@ -41,6 +41,9 @@ router.get('/ajax/add/:class_id', function(req, res){
 		    if(class1.week.next == true){
 		    	console.log('Dates do not work D:');
 		    	res.json({msg: 'Class opens next week!', color: 'e74c3c'});
+		    }else if(class1.open == false){
+		    	console.log('Dates do not work D:');
+		    	res.json({msg: 'Class is not open! (try reloading page)', color: 'e74c3c'});
 			}else{
 				console.log('Dates check out here');
 				Schedule.populate(schedule, options, function (err, schedule1) {
