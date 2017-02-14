@@ -93,7 +93,7 @@ $(document).ready(function(){
 		var formData = {id:id}; //Array 
 		 
 		$.ajax({
-		    url : "http://hallpass.winona.k12.mn.us/template/ajax/fetchTemplate",
+		    url : "/template/ajax/fetchTemplate",
 		    type: "GET",
 		    data : formData,
 		    success: function(data)
@@ -122,7 +122,7 @@ $(document).ready(function(){
     function setActive(id){
         var formData = {id:id};
         $.ajax({
-            url: "http://hallpass.winona.k12.mn.us/template/ajax/setActive",
+            url: "/template/ajax/setActive",
             type: "GET",
             data: formData,
             success: function(data){
@@ -138,7 +138,7 @@ $(document).ready(function(){
         var formData = {id:id};
         $('#delete').html('Removing...');
         $.ajax({
-            url: "http://hallpass.winona.k12.mn.us/template/ajax/deleteTemplate",
+            url: "/template/ajax/deleteTemplate",
             type: "GET",
             data: formData,
             success: function(data){
