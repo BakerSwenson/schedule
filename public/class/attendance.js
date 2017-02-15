@@ -5,7 +5,7 @@ var id = url.split('/')[2];
 $.get( "/class/ajax/class/"+id, function( class1) {
 	console.log(class1);
 	if(class1 === null || class1.open == false){
-		window.location = 'http://hallpass.winona.k12.mn.us/class';
+		window.location = '/class';
 	}
 	var students = class1.students;
 		students.forEach(function(item){
