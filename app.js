@@ -121,8 +121,4 @@ app.use('/absents', require('./routes/absents'));
 app.use('/absents', require('./routes/absents')); " " 
 */
 
-
-
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Listening...");
-});
+module.exports = app;
