@@ -28,7 +28,7 @@ router.get('/login', function(req, res) {
 //   redirecting the user to google.com.  After authorization, Google
 //   will redirect the user back to this application at /auth/google/callback
 router.get('/auth/google',
-  passport.authenticate('google', { scope: ['openid email profile']}));
+  passport.authenticate('google', { hd: 'winona.k12.mn.us', scope: ['openid email profile']}));
 
 // GET /auth/google/callback
 //   Use passport.authenticate() as route middleware to authenticate the
