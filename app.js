@@ -117,12 +117,5 @@ app.use('/class', require('./routes/class'));
 app.use('/admin', require('./routes/admin')); //Check permissions 
 app.use('/schedule', require('./routes/schedule'));
 app.use('/absents', require('./routes/absents'));
-/*
-app.use('/absents', require('./routes/absents')); " " 
-*/
 
-
-
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Listening...");
-});
+module.exports = app;
