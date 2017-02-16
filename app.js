@@ -117,8 +117,5 @@ app.use('/class', require('./routes/class'));
 app.use('/admin', require('./routes/admin')); //Check permissions 
 app.use('/schedule', require('./routes/schedule'));
 app.use('/absents', require('./routes/absents'));
-/*
-app.use('/absents', require('./routes/absents')); " " 
-*/
 
 module.exports = app;
