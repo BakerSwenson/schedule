@@ -60,7 +60,8 @@ passport.use(new GoogleStrategy(
             permissions: {
               teacher: false,
               change_template: false,
-              view_absents: false
+              view_absents: false,
+              admin: false
               }
           })
           newUser.save(function (err) {
