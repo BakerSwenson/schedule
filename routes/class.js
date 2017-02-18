@@ -39,7 +39,7 @@ router.get('/ajax/open/:classID', function(req, res) {
 		class1.save(function(err, d){
 			console.log('Class Pushed default');
 			console.log(d);
-		})
+		});
 		console.log( students );
 		Class.findByIdAndUpdate(req.params.classID, {$set: { open: true}}, function(err, doc) {
 			var options = {
@@ -55,7 +55,7 @@ router.get('/ajax/open/:classID', function(req, res) {
 							var path = `${day}.${hour}`;
 							var pathp = `${day}.${hour}.pending`;
 							console.log(path);
-							var json = { class: null, teacher_add: false, default: true, pending: false };
+							var json = { class: class1._id, teacher_add: false, default: true, pending: false };
 						Schedule.update({_id: user.curr_schedule}, {$set: { [path]: json}}, function(err, doc) {
 						});
 
