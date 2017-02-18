@@ -75,6 +75,32 @@ $(document).ready(function(){
 				var query = $('#students-search').val();
 
 				renderSearchPage(query);
+			},
+			'searchDefault': function(){
+				$('#search').fadeIn( "fast", function() {
+					$('#pending').hide();
+					$('#home').hide();
+					$('#settings').hide();
+					$('#search').show();
+					$('#past-classes').hide();
+				});
+				//get the query from search
+				var query = $('#students-search').val();
+
+				renderSearchPageDefault(query);
+			},
+			'searchTeacher': function(){
+				$('#search').fadeIn( "fast", function() {
+					$('#pending').hide();
+					$('#home').hide();
+					$('#settings').hide();
+					$('#search').show();
+					$('#past-classes').hide();
+				});
+				//get the query from search
+				var query = $('#teachers-search').val();
+				console.log('MADE IT HERE2');
+				redenderSearchPageTEACHER(query);
 			}
 
 		}
@@ -93,6 +119,12 @@ $(document).ready(function(){
 			var url = window.location.pathname;
 			var id = url.split('/')[2];
 			$.get( "/class/ajax/class/"+id, function( class1 ) {
+				if(class1.open){
+					$('#search-bar-form').show();
+				}else{
+					$('#search-bar-form-default_students').show();
+				}
+
 				var students = class1.students;
 				$('#home > table').html('');
 				students.forEach(function(item){
@@ -125,13 +157,62 @@ $(document).ready(function(){
 			    data.forEach(function(item){
 			    	var url = window.location.pathname;
 			    	var id = url.split('/')[2];
-			    	$('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="addBtnq" value="'+ id+'/'+ item._id+'">Add</button></td><td><button class="defaultBtn" value="'+ id+'/'+ item._id+'">Add Default Student</button></td>/tr>')
+			    	$('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="addBtnq" value="'+ id+'/'+ item._id+'">Add</button></td></tr>')
 			    })
 			});
 		}, 500);
 		$('#query-search').html(query);
 	}
 
+
+	function renderSearchPageDefault(query) {
+		console.log(query);
+		$('#searchResults').html('');
+		$('#students-search').val('');
+		$('#loadBar').show();
+		setTimeout(function () {
+			$('#loadBar').hide();
+			$.post("/class/ajax/search",
+			{
+			    query: query
+			},
+			function(data, status){
+			    $('#searchResults').append('<table></table>');
+			    data.forEach(function(item){
+			    	var url = window.location.pathname;
+			    	var id = url.split('/')[2];
+			    	$('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="defaultBtn" value="'+ id+'/'+ item._id+'">Add Default Student</button></td>/tr>')
+			    })
+			});
+		}, 500);
+		$('#query-search').html(query);
+	}
+
+	function redenderSearchPageTEACHER(query) {
+		console.log(query);
+		$('#searchResults').html('');
+		$('#teachers-search').val('');
+		$('#loadBar').show();
+		setTimeout(function () {
+			$('#loadBar').hide();
+			$.post("/class/ajax/search",
+			{
+				data: {
+					teacher: true
+				},
+			    query: query
+			},
+			function(data, status){
+			    $('#searchResults').append('<table></table>');
+			    data.forEach(function(item){
+			    	var url = window.location.pathname;
+			    	var id = url.split('/')[2];
+			    	$('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="teacherBtn" value="'+ id+'/'+ item._id+'">Add TEACHER</button></td>/tr>')
+			    })
+			});
+		}, 500);
+		$('#query-search').html(query);
+	}
 
 	function renderPastClassPage(id) {
 		$('.page').hide();
@@ -197,6 +278,15 @@ $(document).ready(function(){
 	    // Get all the forms elements and their values in one step
 	    renderPage('search');
 	});
+	$('#search-bar-form-teacher').submit(function() {
+	    // Get all the forms elements and their values in one step
+	    console.log('MADE IT HERE2');
+	    renderPage('searchTeacher');
+	});
+	$('#search-bar-form-default_students').submit(function() {
+	    // Get all the forms elements and their values in one step
+	    renderPage('searchDefault');
+	});
 	$(document).on("click", ".addBtnq", function(){
 		$.get( "/class/ajax/add/"+ $(this).val(), function( data ) {
 	  		console.log('Student Added');
@@ -260,5 +350,4 @@ $(document).ready(function(){
 			
 		})
 	})
-
 });

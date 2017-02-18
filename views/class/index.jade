@@ -60,9 +60,12 @@ html(lang="en")
                                 div.dmore
                                     a(href="#").dleftbtn This Week
                                     a(href="#").drightbtn Next Week
-                        form#search-bar-form(onsubmit="return false;")
+                        form#search-bar-form(onsubmit="return false;" style="display: none;")
                             input#students-search
-                            input(type="submit" value="Search")
+                            input(type="submit" value="Search Students")
+                        form#search-bar-form-default_students(onsubmit="return false;" style="display: none;")
+                            input#students-search
+                            input(type="submit" value="Search Students For DEFAULT STUDENTS")
                         table.t
                     div.page#pending(style="display: none;")
                         div.siteHeader Pending Students
@@ -79,6 +82,10 @@ html(lang="en")
                         table.t
                     div.page#settings(style="display: none;")
                         div.siteHeader Settings
+                            form#search-bar-form-teacher(onsubmit="return false;")
+                                p Add teachers...
+                                input(placeholder="Search teacher.")#teachers-search
+                                input(type="submit" value="Search")
 
                     div.page#search(style="display: none;")
                         p Search results
