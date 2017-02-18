@@ -195,11 +195,8 @@ $(document).ready(function(){
 		$('#loadBar').show();
 		setTimeout(function () {
 			$('#loadBar').hide();
-			$.post("/class/ajax/search",
+			$.post("/class/ajax/search/t",
 			{
-				data: {
-					teacher: true
-				},
 			    query: query
 			},
 			function(data, status){
@@ -305,6 +302,12 @@ $(document).ready(function(){
 	  		console.log('Added default student!');
 		});
 	})
+	$(document).on("click", ".teacherBtn", function(){
+		$.get( "/class/ajax/add-teacher/"+ $(this).val(), function( data ) {
+			renderPage('home');
+	  		console.log('Added new teacher');
+		});
+	})
 	$(document).on("click", ".removeBtn", function(){
 		$.get( "/class/ajax/remove/"+ $(this).val(), function( data ) {
 			renderPage('home');
@@ -322,6 +325,7 @@ $(document).ready(function(){
 	  		console.log('Removed Student From Class I think');
 		});
 	})
+
 	/*$('.dopenbutton').click(function() {
 		$('.ddateselection').slideToggle( "slow", function() {
 		    // Animation complete.

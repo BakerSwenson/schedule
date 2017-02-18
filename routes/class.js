@@ -289,12 +289,12 @@ router.get('/ajax/add-default-student/:classid/:studentid', function(req, res) {
 		}
 	})
 })
-router.get('/ajax/add-teacher/:userid', function(req, res) {
+router.get('/ajax/add-teacher/:classid/:userid', function(req, res) {
 	User.findById(req.params.userid, function(err, user) {
 		if(err){
 			res.send('ERROR: User not found!');
 		}else{
-			//add user to the teachers
+			console.log(user);
 		}
 	})
 })
@@ -393,6 +393,13 @@ router.post('/ajax/search', function(req, res, next) {
 	var path = "permissions.teacher";
 
 	User.find({fullname: new RegExp(req.body.query,'i'), [path]: false} ).exec(function(err, users) {
+		res.json(users);
+	})
+});
+router.post('/ajax/search/t', function(req, res, next) {
+	var path = "permissions.teacher";
+
+	User.find({fullname: new RegExp(req.body.query,'i'), [path]: true} ).exec(function(err, users) {
 		res.json(users);
 	})
 });
