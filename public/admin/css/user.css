@@ -24,7 +24,7 @@ header{
 }
 #body{
 	width: 700px;
-	height: 300px;
+        overflow: auto; // was height: 500px;
 	margin: 0 50px;
 	border-radius: 10px;
 	border: 1px solid #22313F;
@@ -41,7 +41,7 @@ input{
 #permissions{
 	float: left;
 	width: 200px;
-	height: 150px;
+	// height: 150px;
 }
 .permissions{
 	margin-left: 20px;
