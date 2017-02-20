@@ -4,6 +4,8 @@ html(lang="en")
 		title Welcome!
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		<!-- link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")-->
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+		script(src="/public/admin/main.js")
 		link(rel="stylesheet" href="/public/admin/css/nav.css")
 		link(rel="stylesheet" href="/public/admin/css/user.css")
 	body
@@ -37,3 +39,4 @@ html(lang="en")
 								input(type='hidden',value='PUT',name='_method')
 								button.btn(type='submit').
 									Update
+								p(id='update_warning') You have changed the permissions for this user. Please press update to make them official
