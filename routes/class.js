@@ -39,7 +39,7 @@ router.get('/ajax/open/:classID', function(req, res) {
 		class1.save(function(err, d){
 			console.log('Class Pushed default');
 			console.log(d);
-		})
+		});
 		console.log( students );
 		Class.findByIdAndUpdate(req.params.classID, {$set: { open: true}}, function(err, doc) {
 			var options = {
@@ -55,7 +55,7 @@ router.get('/ajax/open/:classID', function(req, res) {
 							var path = `${day}.${hour}`;
 							var pathp = `${day}.${hour}.pending`;
 							console.log(path);
-							var json = { class: null, teacher_add: false, default: true, pending: false };
+							var json = { class: class1._id, teacher_add: false, default: true, pending: false };
 						Schedule.update({_id: user.curr_schedule}, {$set: { [path]: json}}, function(err, doc) {
 						});
 
@@ -289,12 +289,26 @@ router.get('/ajax/add-default-student/:classid/:studentid', function(req, res) {
 		}
 	})
 })
-router.get('/ajax/add-teacher/:userid', function(req, res) {
+router.get('/ajax/add-teacher/:classid/:userid', function(req, res) {
 	User.findById(req.params.userid, function(err, user) {
 		if(err){
 			res.send('ERROR: User not found!');
 		}else{
-			//add user to the teachers
+			Class.findById(req.params.classid, function(err, class1){
+				Class.findOne({_id: req.params.classid, teachers : { "$in" : [req.params.userid]}} , function(err, class2) {
+					if(class2){
+						console.log('Class already has this user');
+						res.send('');
+					}else{
+						Class.find({})
+						res.send('');
+						class1.teachers.push(req.params.userid);
+						class1.save(function(err){
+							console.log('Save a new teacher to class');
+						})
+					}
+				})
+			});
 		}
 	})
 })
@@ -393,6 +407,13 @@ router.post('/ajax/search', function(req, res, next) {
 	var path = "permissions.teacher";
 
 	User.find({fullname: new RegExp(req.body.query,'i'), [path]: false} ).exec(function(err, users) {
+		res.json(users);
+	})
+});
+router.post('/ajax/search/t', function(req, res, next) {
+	var path = "permissions.teacher";
+
+	User.find({fullname: new RegExp(req.body.query,'i'), [path]: true} ).exec(function(err, users) {
 		res.json(users);
 	})
 });

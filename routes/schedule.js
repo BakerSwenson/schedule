@@ -48,8 +48,11 @@ router.get('/ajax/add/:class_id', function(req, res){
 				console.log('Dates check out here');
 				Schedule.populate(schedule, options, function (err, schedule1) {
 					if(schedule1.Wednesday.GSH.class != undefined){
-				    	if(schedule1.Wednesday.GSH.class != null){
+				    	if(schedule1.Wednesday.GSH.default != true){
 				    		console.log('No Good');
+				    		res.json({msg: 'You already have a class!', color: 'e74c3c'});
+				    	}else if(schedule1.Wednesday.GSH.class != undefined){
+				    		console.log('No Good 3.0');
 				    		res.json({msg: 'You already have a class!', color: 'e74c3c'});
 				    	}else if(schedule1.Wednesday.GSH.class.teacher_add == true){
 				    		console.log("No Good 2.0");
