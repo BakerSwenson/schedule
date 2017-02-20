@@ -303,6 +303,7 @@ $(document).ready(function(){
 		});
 	})
 	$(document).on("click", ".teacherBtn", function(){
+		console.log('Adding teacher');
 		$.get( "/class/ajax/add-teacher/"+ $(this).val(), function( data ) {
 			renderPage('home');
 	  		console.log('Added new teacher');

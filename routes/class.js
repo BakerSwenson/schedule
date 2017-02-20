@@ -294,7 +294,21 @@ router.get('/ajax/add-teacher/:classid/:userid', function(req, res) {
 		if(err){
 			res.send('ERROR: User not found!');
 		}else{
-			console.log(user);
+			Class.findById(req.params.classid, function(err, class1){
+				Class.findOne({_id: req.params.classid, teachers : { "$in" : [req.params.userid]}} , function(err, class2) {
+					if(class2){
+						console.log('Class already has this user');
+						res.send('');
+					}else{
+						Class.find({})
+						res.send('');
+						class1.teachers.push(req.params.userid);
+						class1.save(function(err){
+							console.log('Save a new teacher to class');
+						})
+					}
+				})
+			});
 		}
 	})
 })
