@@ -8,7 +8,14 @@ var User = require('../models/users.js');
 var Pass = require('../models/schedules.js');
 
 router.get('/', ensureAuthenticated, inUser, function(req, res) {
-  res.send('You are logged in');
+  res.send(`
+<ul>
+<li><a href="/schedule">Schedule</a></li>
+<li><a href="/class">Class</a></li>
+<li><a href="/admin">Admin</a></li>
+<li><a href="/absents">Absents</a></li>
+</ul>
+`);
 });
 
 router.get('/login', function(req, res) {
@@ -21,7 +28,7 @@ router.get('/login', function(req, res) {
 //   redirecting the user to google.com.  After authorization, Google
 //   will redirect the user back to this application at /auth/google/callback
 router.get('/auth/google',
-  passport.authenticate('google', { scope: ['openid email profile']}));
+  passport.authenticate('google', { hd: 'winona.k12.mn.us', scope: ['openid email profile']}));
 
 // GET /auth/google/callback
 //   Use passport.authenticate() as route middleware to authenticate the
