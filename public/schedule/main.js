@@ -161,7 +161,6 @@ $(document).ready(function(){
 				    <div class="changeable">Overridable</div>
 				    <input type="checkbox" disabled="disabled" ${changeW}/>
 				  </div>
-				</div>
 	  			`);
 		});
 	};
