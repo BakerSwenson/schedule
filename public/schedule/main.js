@@ -153,7 +153,6 @@ $(document).ready(function(){
 	  		var changeW = (schedule.Wednesday.GSH.teacher_add ? "" : "checked='checked'");
 	  		var pendingW = (schedule.Wednesday.GSH.pending ? "classPending" : "");
 	  		$('#w-S').html(`
-				<div class="time ${pendingW}">9:00am - 10:00am </div>
 				  <div class="body ${pendingW}">
 				    <div class="class">
 				      <div class="className">${schedule.Wednesday.GSH.class.class_name}</div>
@@ -161,7 +160,6 @@ $(document).ready(function(){
 				    <div class="changeable">Overridable</div>
 				    <input type="checkbox" disabled="disabled" ${changeW}/>
 				  </div>
-				</div>
 	  			`);
 		});
 	};
