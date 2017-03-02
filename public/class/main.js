@@ -100,7 +100,7 @@ $(document).ready(function(){
 				//get the query from search
 				var query = $('#teachers-search').val();
 				console.log('MADE IT HERE2');
-				redenderSearchPageTEACHER(query);
+				renderSearchPageTEACHER(query);
 			}
 
 		}
@@ -188,7 +188,7 @@ $(document).ready(function(){
 		$('#query-search').html(query);
 	}
 
-	function redenderSearchPageTEACHER(query) {
+	function renderSearchPageTEACHER(query) {
 		console.log(query);
 		$('#searchResults').html('');
 		$('#teachers-search').val('');
