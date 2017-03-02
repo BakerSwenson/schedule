@@ -275,6 +275,9 @@ $(document).ready(function(){
 	    // Get all the forms elements and their values in one step
 	    renderPage('search');
 	});
+	$('#update-class-form').submit(function () {
+		
+	});
 	$('#search-bar-form-teacher').submit(function() {
 	    // Get all the forms elements and their values in one step
 	    console.log('MADE IT HERE2');
