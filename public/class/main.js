@@ -189,11 +189,7 @@ $(document).ready(function(){
 	}
 
 	function updateClassName(new_name) {
-		alert("Class updated!");
-		alert(new_name);
-		var url = window.location.pathname;
-		var id = url.split('/')[2];
-		alert(id);
+		var id = window.location.pathname.split('/')[2];
 		$.post("/class/change_name",
 		       {
 			       classID: id,
