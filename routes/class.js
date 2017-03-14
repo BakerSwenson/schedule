@@ -10,7 +10,6 @@ var Log = require('../models/logs.js');
 
 router.use('/*', ensureAuthenticated, inUser)
 
-
 //Get List of requesting for class
 router.get('/ajax/approveable/:classID', function(req, res) {
 	Class.findById(req.params.classID, function(err, class1){
@@ -154,6 +153,17 @@ router.get('/', function(req, res) {
 
 router.get('/create', function(req, res) {
 	res.render('class/create');
+});
+
+router.post('/change_name', function(req, res) {
+	console.log("change name here!");
+	Class.findByIdAndUpdate(
+		req.body.classID,
+		{$set: { class_name: req.body.class_name }},
+		function (err, val) {
+			res.redirect("/class/" + req.body.classID);
+		}
+	);
 });
 
 router.get('/choose', function(req, res) {
