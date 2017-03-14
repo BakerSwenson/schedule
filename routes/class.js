@@ -156,7 +156,6 @@ router.get('/create', function(req, res) {
 });
 
 router.post('/change_name', function(req, res) {
-	console.log("change name here!");
 	Class.findByIdAndUpdate(
 		req.body.classID,
 		{$set: { class_name: req.body.class_name }},
