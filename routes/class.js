@@ -8,7 +8,7 @@ var Class = require('../models/classes.js');
 var Schedule = require('../models/schedules.js');
 var Log = require('../models/logs.js');
 
-router.use('/*', ensureAuthenticated, inUser)
+router.use('/*', ensureAuthenticated, inUser, ensureTeacher)
 
 //Get List of requesting for class
 router.get('/ajax/approveable/:classID', function(req, res) {
@@ -637,4 +637,13 @@ function ensureAuthenticated(req, res, next) {
   }
   res.redirect('/login');
 }
+
+function ensureTeacher(req, res, next) {
+    if (req.inUser.permissions.teacher) {
+	next();
+    } else {
+	res.end("You are not a teacher");
+    }
+}
+
 module.exports = router;
