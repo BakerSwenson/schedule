@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 // Models
 var User = require('../models/users');
 
-//router.get('*', ensureAdmin);
+router.get('*', ensureAdmin);
+
 //admin stuff
 router.get('/', function(req, res) {
   User.find({}, function(err, users) {
@@ -96,11 +97,12 @@ router.get('/user/:id', function(req, res) {
 function ensureAdmin(req, res, next) {
   if(req.isAuthenticated()) {
     User.findById( req.user._id, function(err, user) {
-      console.log(user)
-      if( user.isadmin === true){
+      console.log(user);
+      if( user.permissions.admin === true){
           return next();
         }else{
-          res.redirect('/account');
+            // res.redirect('/account');
+	    res.end("You are not an admin");
         }
     })
   }else{
