@@ -8,8 +8,7 @@ var Class = require('../models/classes.js');
 var Schedule = require('../models/schedules.js');
 var Log = require('../models/logs.js');
 
-router.use('/*', ensureAuthenticated, inUser)
-
+router.use('/*', ensureAuthenticated, inUser, ensureTeacher)
 
 //Get List of requesting for class
 router.get('/ajax/approveable/:classID', function(req, res) {
@@ -154,6 +153,16 @@ router.get('/', function(req, res) {
 
 router.get('/create', function(req, res) {
 	res.render('class/create');
+});
+
+router.post('/change_name', function(req, res) {
+	Class.findByIdAndUpdate(
+		req.body.classID,
+		{$set: { class_name: req.body.class_name }},
+		function (err, val) {
+			res.redirect("/class/" + req.body.classID);
+		}
+	);
 });
 
 router.get('/choose', function(req, res) {
@@ -628,4 +637,13 @@ function ensureAuthenticated(req, res, next) {
   }
   res.redirect('/login');
 }
+
+function ensureTeacher(req, res, next) {
+    if (req.inUser.permissions.teacher) {
+	next();
+    } else {
+	res.end("You are not a teacher");
+    }
+}
+
 module.exports = router;

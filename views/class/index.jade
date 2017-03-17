@@ -82,6 +82,10 @@ html(lang="en")
                         table.t
                     div.page#settings(style="display: none;")
                         div.siteHeader Settings
+                            form#update-class-name-form(onsubmit="return false;")
+                                p Update Class Name
+                                input(placeholder="New Class Name" type="text")
+                                input(type="submit" value="Update")
                             form#search-bar-form-teacher(onsubmit="return false;")
                                 p Add teachers...
                                 input(placeholder="Search teacher.")#teachers-search

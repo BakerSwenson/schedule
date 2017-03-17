@@ -6,7 +6,7 @@ html(lang="en")
         link(rel="stylesheet" href="/public/class/css/create.css")
     body
         form#create( type="form" action='/class/create' method='post' enctype='application/x-www-form-urlencoded' )
-            input#ClassName(type="text" name="class_name" placeholder="Name of class ex. Baker's GSH")
+            input#ClassName(type="text" name="class_name" placeholder="Name of class ex. Baker's GSH", maxlength="25")
             input#ClassLimit(type="number" name="limit" placeholder="Limit of Students")
             select(name="day")
                 option(disabled selected) Choose Day

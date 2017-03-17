@@ -100,7 +100,7 @@ $(document).ready(function(){
 				//get the query from search
 				var query = $('#teachers-search').val();
 				console.log('MADE IT HERE2');
-				redenderSearchPageTEACHER(query);
+				renderSearchPageTEACHER(query);
 			}
 
 		}
@@ -188,7 +188,17 @@ $(document).ready(function(){
 		$('#query-search').html(query);
 	}
 
-	function redenderSearchPageTEACHER(query) {
+	function updateClassName(new_name) {
+		var id = window.location.pathname.split('/')[2];
+		$.post("/class/change_name",
+		       {
+			       classID: id,
+			       class_name: new_name
+		       });
+		location.reload();
+	}
+
+	function renderSearchPageTEACHER(query) {
 		console.log(query);
 		$('#searchResults').html('');
 		$('#teachers-search').val('');
@@ -274,6 +284,9 @@ $(document).ready(function(){
 	$('#search-bar-form').submit(function() {
 	    // Get all the forms elements and their values in one step
 	    renderPage('search');
+	});
+	$('#update-class-name-form').submit(function () {
+		updateClassName($(this).find("input").val());
 	});
 	$('#search-bar-form-teacher').submit(function() {
 	    // Get all the forms elements and their values in one step
