@@ -57,14 +57,14 @@ router.put('/users/:userID', function(req, res) {
 
 //router sort
 router.get('/sort/teacher', function(req, res) {
-  User.find({isteacher: true}, function(err, users) {
+  User.find({"permissions.teacher": true}, function(err, users) {
     res.render('admin/users', {
       users: users
     })
   })
 });
 router.get('/sort/admin', function(req, res) {
-  User.find({isadmin: true}, function(err, users) {
+  User.find({"permissions.admin": true}, function(err, users) {
     res.render('admin/users', {
       users: users
     })
