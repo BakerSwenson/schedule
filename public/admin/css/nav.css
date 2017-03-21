@@ -19,7 +19,6 @@ p.inline{
 .navLogo{
     display: block;
     width: 100px;
-    background-color: yellow;
 }
 #navItems{
     list-style-type: none;
