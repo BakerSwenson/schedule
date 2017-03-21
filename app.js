@@ -115,7 +115,7 @@ app.use(methodOverride('_method'));
 
 app.use('/', require('./routes/routes'));
 app.use('/class', require('./routes/class'));
-app.use('/admin', require('./routes/admin')); //Check permissions 
+app.use('/admin', require('./routes/admin'));
 app.use('/schedule', require('./routes/schedule'));
 app.use('/absents', require('./routes/absents'));
 
