@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var scheduleSchema = Schema({
 	week: {
-    	start: Date,
-    	finish: Date
-    },
+		start: Date,
+		finish: Date
+	},
 	creator: { type: Schema.Types.ObjectId, ref: 'User' },
 	scheduleTEMP: { type: Schema.Types.ObjectId, ref: 'ScheduleTEMP' },
 	Monday:{

@@ -18,9 +18,9 @@ router.get('/ajax/approveable/:classID', function(req, res) {
 		var pathp = "Wednesday.GSH.pending"
 		Schedule.find({[path]: class1._id, [pathp]: true}, function(err, schedules){
 			var options = {
-		    	path: 'creator',
-		    	model: 'User'
-		    };
+				path: 'creator',
+				model: 'User'
+			};
 			Schedule.populate(schedules, options, function (err, test) {
 				res.json(test);
 			});
@@ -42,24 +42,24 @@ router.get('/ajax/open/:classID', function(req, res) {
 		console.log( students );
 		Class.findByIdAndUpdate(req.params.classID, {$set: { open: true}}, function(err, doc) {
 			var options = {
-		    	path: 'students',
-		    	model: 'User'
+				path: 'students',
+				model: 'User'
 			};
 			Class.populate(class1, options, function (err, class1) {
-					var students1 = class1.students;
-					students1.forEach(function(student){
-						User.findById(student, function(err, user){
-							var day = class1.day;
-							var hour = class1.hour;
-							var path = `${day}.${hour}`;
-							var pathp = `${day}.${hour}.pending`;
-							console.log(path);
-							var json = { class: class1._id, teacher_add: false, default: true, pending: false };
+				var students1 = class1.students;
+				students1.forEach(function(student){
+					User.findById(student, function(err, user){
+						var day = class1.day;
+						var hour = class1.hour;
+						var path = `${day}.${hour}`;
+						var pathp = `${day}.${hour}.pending`;
+						console.log(path);
+						var json = { class: class1._id, teacher_add: false, default: true, pending: false };
 						Schedule.update({_id: user.curr_schedule}, {$set: { [path]: json}}, function(err, doc) {
 						});
 
-						});
 					});
+				});
 			});
 			console.log(doc.class_name +" - Opened for business");
 			res.send('good');
@@ -72,9 +72,9 @@ router.get('/ajax/class/:classid', function(req, res) {
 
 	Class.findById(req.params.classid, function(err, class1){
 		var options = {
-	    	path: 'students',
-	    	model: 'User'
-	    };
+			path: 'students',
+			model: 'User'
+		};
 		Schedule.populate(class1, options, function (err, class2) {
 			res.json(class2);
 		});
@@ -104,22 +104,22 @@ router.get('/ajax/remove/:classid/:studentid', function(req, res, next) {
 				if(class1.open){
 				}else{
 					Class.update( 
-					    { _id: class1._id},
-					    { $pull: { default_students : user._id } },
-				        { safe: true },
-				    	function(err, class5) {
-				    	console.log(class5);
-					});
+						{ _id: class1._id},
+						{ $pull: { default_students : user._id } },
+						{ safe: true },
+						function(err, class5) {
+							console.log(class5);
+						});
 				}
 			}else{
 				Class.update( 
 					{ _id: class1._id},
-			        { $pull: { students : user._id } },
-			        { safe: true },
-				   	function(err, class5) {
-				    	console.log(class5);
-				    });
-				}
+					{ $pull: { students : user._id } },
+					{ safe: true },
+					function(err, class5) {
+						console.log(class5);
+					});
+			}
 			var day = class1.day;
 			var hour = class1.hour;
 			var path = `${day}.${hour}`;
@@ -203,13 +203,13 @@ router.post('/create', function(req, res) {
 		teachers: req.user._id
 	})
 	newClass.save(function(err, class1) {
-    if(err) {
-      console.log(err);
-    } else {
-    	console.log(class1);
-      res.redirect('/class/'+class1._id);
-    }
-  });
+		if(err) {
+			console.log(err);
+		} else {
+			console.log(class1);
+			res.redirect('/class/'+class1._id);
+		}
+	});
 })
 
 router.get('/:id', function(req, res, next) {
@@ -248,7 +248,7 @@ router.get('/ajax/add/:classid/:studentid', function(req, res) {
 				console.log(schedule)
 				console.log("for schedule bro: " + schedule._id);
 				Schedule.findByIdAndUpdate(schedule._id, {$set: { [path]: json}}, function(err, doc) {
-				    Class.findOne({hour: class1.hour, day: class1.day, students : { "$in" : [user._id]}} , function(err, class2) {
+					Class.findOne({hour: class1.hour, day: class1.day, students : { "$in" : [user._id]}} , function(err, class2) {
 						if(class2){
 							console.log('Class already has added.');
 							res.send('');
@@ -325,12 +325,12 @@ router.get('/ajax/add-teacher/:classid/:userid', function(req, res) {
 router.post('/:classID/attendance', function(req, res) {
 	Class.findById(req.params.classID, function(err, class1){
 		var options = {
-	    	path: 'students',
-	    	model: 'User'
+			path: 'students',
+			model: 'User'
 		};
 		Schedule.populate(class1, options, function (err, class2) {
-					var sd = class2.week.start;
-					var ed = class2.week.finish;
+			var sd = class2.week.start;
+			var ed = class2.week.finish;
 			var newLog = new Log({
 				week: {
 					start: sd,
@@ -351,60 +351,60 @@ router.post('/:classID/attendance', function(req, res) {
 			saveable.save(function(err, doc){
 				console.log(doc +" - Saved Class Logged or something")
 			});
-				var curr = new Date;
-				var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()));
-				var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6)); 
-				var options = {
-			    	path: 'students',
-			    	model: 'User'
-			    };
-				Class.populate(class1, options, function (err, class1) {
-					var students1 = class1.students;
-						students1.forEach(function(student){
-							Class.findOne({hour: class1.hour, day: class1.day, default_students : { "$in" : [student._id]}}, function(err, class2) {
-						        if(class2){
-						        	var day = class1.day;
-									var hour = class1.hour;
-									var path = `${day}.${hour}`;
-									console.log(path);
-									var json = { class: class2._id, teacher_add: false, default: true, pending: false };
-									Schedule.update({_id: student.curr_schedule}, {$set: { [path]: json}}, function(err, doc) {
-										console.log('Indavidual');
-									});
-								}else{
-									var day = class1.day;
-									var hour = class1.hour;
-									var path = `${day}.${hour}`;
-									console.log(path);
-									var json = { class: null, teacher_add: false, default: false, pending: false };
-									Schedule.update({_id: student.curr_schedule}, {$set: { [path]: json}}, function(err, doc) {
-										console.log('');
-									});
-								}
+			var curr = new Date;
+			var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()));
+			var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6)); 
+			var options = {
+				path: 'students',
+				model: 'User'
+			};
+			Class.populate(class1, options, function (err, class1) {
+				var students1 = class1.students;
+				students1.forEach(function(student){
+					Class.findOne({hour: class1.hour, day: class1.day, default_students : { "$in" : [student._id]}}, function(err, class2) {
+						if(class2){
+							var day = class1.day;
+							var hour = class1.hour;
+							var path = `${day}.${hour}`;
+							console.log(path);
+							var json = { class: class2._id, teacher_add: false, default: true, pending: false };
+							Schedule.update({_id: student.curr_schedule}, {$set: { [path]: json}}, function(err, doc) {
+								console.log('Indavidual');
 							});
-						});
+						}else{
+							var day = class1.day;
+							var hour = class1.hour;
+							var path = `${day}.${hour}`;
+							console.log(path);
+							var json = { class: null, teacher_add: false, default: false, pending: false };
+							Schedule.update({_id: student.curr_schedule}, {$set: { [path]: json}}, function(err, doc) {
+								console.log('');
+							});
+						}
 					});
 				});
-				var path = "Wednesday.GSH.class";
-				var pathj = "Wednesday.GSH";
-				var pathp = "Wednesday.GSH.pending";
-				var json = { class: null, teacher_add: false, default: false, pending: false };
-				Schedule.update({[path]:class1._id, [pathp]: true}, {$set: { [pathj]: json}}, function(err, doc) {
-					console.log('PENDING STUDENTS REMOVED');
-				});
+			});
+		});
+		var path = "Wednesday.GSH.class";
+		var pathj = "Wednesday.GSH";
+		var pathp = "Wednesday.GSH.pending";
+		var json = { class: null, teacher_add: false, default: false, pending: false };
+		Schedule.update({[path]:class1._id, [pathp]: true}, {$set: { [pathj]: json}}, function(err, doc) {
+			console.log('PENDING STUDENTS REMOVED');
+		});
 		Class.findByIdAndUpdate(class1._id, {$set: { students: [], open: false, "week.next": false}}, function(err, doc) {
 			console.log('IT WAS SUCCESSFULLY UPDATED');
 			res.redirect('/class/'+doc._id);
 		});
 
 	})
-/*
-	newlog = new Log({
-		Users: {
-			k
-		}
-	})
-*/
+	/*
+	 newlog = new Log({
+	 Users: {
+	 k
+	 }
+	 })
+	 */
 });
 router.get('/ajax/:id/past-classes', function(req, res) {
 	Log.find({classID: req.params.id}, function(err, logs){
@@ -465,9 +465,9 @@ function getClass(classid, callback){
 			callback(class1);
 		}else{
 			var options = {
-		    	path: 'students',
-		    	model: 'User'
-		    };
+				path: 'students',
+				model: 'User'
+			};
 			Class.populate(class1, options, function (err, class1) {
 				var students = class1.students;
 				students.forEach(function(student){
@@ -478,8 +478,8 @@ function getClass(classid, callback){
 						var pathp = `${day}.${hour}.pending`;
 						console.log(path);
 						var json = { class: null, teacher_add: false, default: false, pending: false };
-					Schedule.update({_id: user.curr_schedule, [pathp]: true}, {$set: { [path]: json}}, function(err, doc) {
-						    
+						Schedule.update({_id: user.curr_schedule, [pathp]: true}, {$set: { [path]: json}}, function(err, doc) {
+							
 						});
 					});
 				});
@@ -547,21 +547,21 @@ function getSchedule(user, callback){
 				var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()));
 				var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
 				function findDefault(hour, day, callback)  {
-				    Class.findOne({hour: hour, day: day, default_students : { "$in" : [user._id]}}, function(err, class1) {
-				        if(class1){
-				        	console.log("FOUND A DEFAULT CLASS");
-				        	callback(class1._id, true);
-				        }else{
-				        	callback(null, false)
-				        }
-				    });
+					Class.findOne({hour: hour, day: day, default_students : { "$in" : [user._id]}}, function(err, class1) {
+						if(class1){
+							console.log("FOUND A DEFAULT CLASS");
+							callback(class1._id, true);
+						}else{
+							callback(null, false)
+						}
+					});
 				}
 				findDefault("GSH", "Monday", function (resultm, m) {
-				    findDefault("GSH", "Tuesday", function (resulttu, tu) {
-					    findDefault("GSH", "Wednesday", function (resultw, w) {
-						    findDefault("GSH", "Thursday", function (resultth, th) {
-							    findDefault("GSH", "Friday", function (resultfr, fr) {
-								    newSchedule = new Schedule({
+					findDefault("GSH", "Tuesday", function (resulttu, tu) {
+						findDefault("GSH", "Wednesday", function (resultw, w) {
+							findDefault("GSH", "Thursday", function (resultth, th) {
+								findDefault("GSH", "Friday", function (resultfr, fr) {
+									newSchedule = new Schedule({
 										week: {
 											start: firstday,
 											finish: lastday
@@ -632,18 +632,18 @@ function inUser(req, res, next) {
 }
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect('/login');
 }
 
 function ensureTeacher(req, res, next) {
-    if (req.inUser.permissions.teacher) {
-	next();
-    } else {
-	res.end("You are not a teacher");
-    }
+	if (req.inUser.permissions.teacher) {
+		next();
+	} else {
+		res.end("You are not a teacher");
+	}
 }
 
 module.exports = router;

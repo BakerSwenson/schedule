@@ -1,11 +1,11 @@
 var authConfig = require('./config/auth'),
-  express = require('express'),
-  jade = require('jade'),
-  mongoose = require('mongoose'),
-  passport = require('passport'),
-  GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-  User = require('./models/users.js'),
-  bodyParser = require('body-parser');
+		express = require('express'),
+		jade = require('jade'),
+		mongoose = require('mongoose'),
+		passport = require('passport'),
+		GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+		User = require('./models/users.js'),
+		bodyParser = require('body-parser');
 
 // Passport session setup.
 //
@@ -14,13 +14,13 @@ var authConfig = require('./config/auth'),
 //   storing the user ID when serializing, and finding the user by ID when
 //   deserializing.
 passport.serializeUser(function(user, done) {
-  // done(null, user.id);
-  done(null, user);
+	// done(null, user.id);
+	done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
-  // Users.findById(obj, done);
-  done(null, obj);
+	// Users.findById(obj, done);
+	done(null, obj);
 });
 
 
@@ -31,50 +31,50 @@ passport.deserializeUser(function(obj, done) {
 //   See http://passportjs.org/docs/configure#verify-callback
 passport.use(new GoogleStrategy(
 
-  // Use the API access settings stored in ./config/auth.json. You must create
-  // an OAuth 2 client ID and secret at: https://console.developers.google.com
-  authConfig.google,
+	// Use the API access settings stored in ./config/auth.json. You must create
+	// an OAuth 2 client ID and secret at: https://console.developers.google.com
+	authConfig.google,
 
-  function(accessToken, refreshToken, profile, done) {
+	function(accessToken, refreshToken, profile, done) {
 
-    // Typically you would query the database to find the user record
-    // associated with this Google profile, then pass that object to the `done`
-    // callback.
-    var query = User.findOne({ 'google_id': profile.id});
+		// Typically you would query the database to find the user record
+		// associated with this Google profile, then pass that object to the `done`
+		// callback.
+		var query = User.findOne({ 'google_id': profile.id});
 
-    // selecting the `name` and `occupation` fields
-    query.select('google_id email name permissions');
+		// selecting the `name` and `occupation` fields
+		query.select('google_id email name permissions');
 
-    // execute the query at a later time
-    query.exec(function (err, person) {
-       if (err) return handleError(err);
-        if (person === null){
-          newUser = new User({
-            google_id: profile.id,
-            email: profile.emails[0].value,
-            fullname: profile.name.givenName +" "+ profile.name.familyName,
-            name: {
-              first: profile.name.givenName,
-              last: profile.name.familyName
-            },
-            permissions: {
-              teacher: false,
-              change_template: false,
-              view_absents: false,
-              admin: false
-              }
-          })
-          newUser.save(function (err) {
-            if (err) console.log(err)
-            console.log('New user just registered! Email :' + profile.emails[0].value +'!');
-            return done(err, newUser)
-          })
-        } else if (person) {
-          console.log('Welcome back ' + person.name.first + ' ' + person.name.last);
-          return done(err, person)
-        }
-      })
-  }
+		// execute the query at a later time
+		query.exec(function (err, person) {
+			if (err) return handleError(err);
+			if (person === null){
+				newUser = new User({
+					google_id: profile.id,
+					email: profile.emails[0].value,
+					fullname: profile.name.givenName +" "+ profile.name.familyName,
+					name: {
+						first: profile.name.givenName,
+						last: profile.name.familyName
+					},
+					permissions: {
+						teacher: false,
+						change_template: false,
+						view_absents: false,
+						admin: false
+					}
+				})
+				newUser.save(function (err) {
+					if (err) console.log(err)
+					console.log('New user just registered! Email :' + profile.emails[0].value +'!');
+					return done(err, newUser)
+				})
+			} else if (person) {
+				console.log('Welcome back ' + person.name.first + ' ' + person.name.last);
+				return done(err, person)
+			}
+		})
+	}
 ));
 
 
@@ -93,9 +93,9 @@ mongoose.connect('mongodb://localhost/schedule2');
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false
+	secret: 'keyboard cat',
+	resave: false,
+	saveUninitialized: false
 }));
 
 app.use('/public', express.static(__dirname + '/public'));
@@ -110,8 +110,8 @@ app.use(passport.session());
 app.use(methodOverride('_method'));
 
 /*
-  Routes
-*/
+ Routes
+ */
 
 app.use('/', require('./routes/routes'));
 app.use('/class', require('./routes/class'));

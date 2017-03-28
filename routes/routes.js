@@ -8,7 +8,7 @@ var User = require('../models/users.js');
 var Pass = require('../models/schedules.js');
 
 router.get('/', ensureAuthenticated, inUser, function(req, res) {
-  res.send(`
+	res.send(`
 <ul>
 <li><a href="/schedule">Schedule</a></li>
 <li><a href="/class">Class</a></li>
@@ -19,7 +19,7 @@ router.get('/', ensureAuthenticated, inUser, function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-  res.redirect('/auth/google');
+	res.redirect('/auth/google');
 });
 
 // GET /auth/google
@@ -28,7 +28,7 @@ router.get('/login', function(req, res) {
 //   redirecting the user to google.com.  After authorization, Google
 //   will redirect the user back to this application at /auth/google/callback
 router.get('/auth/google',
-  passport.authenticate('google', { hd: 'winona.k12.mn.us', scope: ['openid email profile']}));
+					 passport.authenticate('google', { hd: 'winona.k12.mn.us', scope: ['openid email profile']}));
 
 // GET /auth/google/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -36,22 +36,22 @@ router.get('/auth/google',
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 router.get('/auth/google/callback',
-  passport.authenticate('google', {
-    failureRedirect: '/login'
-  }),
-  function(req, res) {
-    // Authenticated success
-    res.redirect('/');
-  });
+					 passport.authenticate('google', {
+						 failureRedirect: '/login'
+					 }),
+					 function(req, res) {
+						 // Authenticated success
+						 res.redirect('/');
+					 });
 
 router.get('/ajax/user', function(req, res){
-  var data = req.inUser;
-  res.json({data});
+	var data = req.inUser;
+	res.json({data});
 })
 
 router.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
+	req.logout();
+	res.redirect('/');
 });
 
 
@@ -63,10 +63,10 @@ function inUser(req, res, next) {
 }
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect('/login');
 }
 
 module.exports = router;

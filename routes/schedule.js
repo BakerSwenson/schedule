@@ -30,54 +30,54 @@ router.get('/ajax/add/:class_id', function(req, res){
 	Class.findById(req.params.class_id, function(err, class1){
 		getSchedule(req.user._id, function(err, schedule){
 			var options = {
-		      path: 'Wednesday.GSH.class',
-		      model: 'Class'
-		    };
-		    var curr = new Date;
+				path: 'Wednesday.GSH.class',
+				model: 'Class'
+			};
+			var curr = new Date;
 			var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()));
 			var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6)); 
 			console.log(class1.week.next);
 
-		    if(class1.week.next == true){
-		    	console.log('Dates do not work D:');
-		    	res.json({msg: 'Class opens next week!', color: 'e74c3c'});
-		    }else if(class1.open == false){
-		    	console.log('Dates do not work D:');
-		    	res.json({msg: 'Class is not open! (try reloading page)', color: 'e74c3c'});
+			if(class1.week.next == true){
+				console.log('Dates do not work D:');
+				res.json({msg: 'Class opens next week!', color: 'e74c3c'});
+			}else if(class1.open == false){
+				console.log('Dates do not work D:');
+				res.json({msg: 'Class is not open! (try reloading page)', color: 'e74c3c'});
 			}else{
 				console.log('Dates check out here');
 				Schedule.populate(schedule, options, function (err, schedule1) {
 					if(schedule1.Wednesday.GSH.class != undefined){
-				    	if(schedule1.Wednesday.GSH.default != true){
-				    		console.log('No Good');
-				    		res.json({msg: 'You already have a class!', color: 'e74c3c'});
-				    	}else if(schedule1.Wednesday.GSH.class != undefined){
-				    		console.log('No Good 3.0');
-				    		res.json({msg: 'You already have a class!', color: 'e74c3c'});
-				    	}else if(schedule1.Wednesday.GSH.class.teacher_add == true){
-				    		console.log("No Good 2.0");
-				    		res.json({msg: 'You already have a class!', color: 'e74c3c'});
-				    	}else{
-				    		var day = class1.day;
+						if(schedule1.Wednesday.GSH.default != true){
+							console.log('No Good');
+							res.json({msg: 'You already have a class!', color: 'e74c3c'});
+						}else if(schedule1.Wednesday.GSH.class != undefined){
+							console.log('No Good 3.0');
+							res.json({msg: 'You already have a class!', color: 'e74c3c'});
+						}else if(schedule1.Wednesday.GSH.class.teacher_add == true){
+							console.log("No Good 2.0");
+							res.json({msg: 'You already have a class!', color: 'e74c3c'});
+						}else{
+							var day = class1.day;
 							var hour = class1.hour;
 							var path = `${day}.${hour}`;
 							console.log(path);
 							var json = { class: class1._id, teacher_add: false, default: false, pending: true };
-				    		Schedule.findByIdAndUpdate(schedule1._id, {$set: { [path]: json}}, function(err, doc) {
-				    		});
-				    		res.json({msg: 'Pending request sent!', color: '3498db'});
-				    	}
-				    }else{
-				    	var day = class1.day;
+							Schedule.findByIdAndUpdate(schedule1._id, {$set: { [path]: json}}, function(err, doc) {
+							});
+							res.json({msg: 'Pending request sent!', color: '3498db'});
+						}
+					}else{
+						var day = class1.day;
 						var hour = class1.hour;
 						var path = `${day}.${hour}`;
 						console.log(path);
 						var json = { class: class1._id, teacher_add: false, default: false, pending: true };
-				    	Schedule.findByIdAndUpdate(schedule1._id, {$set: { [path]: json}}, function(err, doc) {
-				    	});
-				    	res.json({msg: 'Pending request sent!', color: '3498db'});
-				    }
-			    });
+						Schedule.findByIdAndUpdate(schedule1._id, {$set: { [path]: json}}, function(err, doc) {
+						});
+						res.json({msg: 'Pending request sent!', color: '3498db'});
+					}
+				});
 			}
 		})
 	});
@@ -89,33 +89,33 @@ router.get('/ajax/schedule', function(req, res){
 			console.log("Error with schedule!");
 		}else{
 			var options = {
-		      path: 'Wednesday.GSH.class',
-		      model: 'Class'
-		    };
+				path: 'Wednesday.GSH.class',
+				model: 'Class'
+			};
 			Schedule.populate(schedule, options, function (err, schedule1) {
-		      res.json(schedule1);
-		    });
+				res.json(schedule1);
+			});
 		}
 	});
 	/*
-	CreateSchedule(req.user._id, function(user) {
+	 CreateSchedule(req.user._id, function(user) {
 
-		if(user){
-			var curr = new Date;
-			var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()));
-			var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
-			Schedule.findById(user.curr_schedule, function(err, schedule) {
-				console.log(schedule.week.start.getDate());
-				console.log(firstday.getDate())
-				if(schedule.week.start.getDate() == firstday.getDate() || schedule.week.finish.getDate() == lastday.getDate()){
-					console.log("current sched good!");
-				}
-			})
-		}else{
-			console.log('death to you');
-		}
-	});
-	*/
+	 if(user){
+	 var curr = new Date;
+	 var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()));
+	 var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
+	 Schedule.findById(user.curr_schedule, function(err, schedule) {
+	 console.log(schedule.week.start.getDate());
+	 console.log(firstday.getDate())
+	 if(schedule.week.start.getDate() == firstday.getDate() || schedule.week.finish.getDate() == lastday.getDate()){
+	 console.log("current sched good!");
+	 }
+	 })
+	 }else{
+	 console.log('death to you');
+	 }
+	 });
+	 */
 });
 
 
@@ -169,20 +169,20 @@ function getSchedule(user, callback){
 				var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()));
 				var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6));
 				function findDefault(hour, day, callback)  {
-				    Class.findOne({hour: hour, day: day, default_students : { "$in" : [user._id]}}, function(err, class1) {
-				        if(class1){
-				        	callback(class1._id, true);
-				        }else{
-				        	callback(null, false)
-				        }
-				    });
+					Class.findOne({hour: hour, day: day, default_students : { "$in" : [user._id]}}, function(err, class1) {
+						if(class1){
+							callback(class1._id, true);
+						}else{
+							callback(null, false)
+						}
+					});
 				}
 				findDefault("GSH", "Monday", function (resultm, m) {
-				    findDefault("GSH", "Tuesday", function (resulttu, tu) {
-					    findDefault("GSH", "Wednesday", function (resultw, w) {
-						    findDefault("GSH", "Thursday", function (resultth, th) {
-							    findDefault("GSH", "Friday", function (resultfr, fr) {
-								    newSchedule = new Schedule({
+					findDefault("GSH", "Tuesday", function (resulttu, tu) {
+						findDefault("GSH", "Wednesday", function (resultw, w) {
+							findDefault("GSH", "Thursday", function (resultth, th) {
+								findDefault("GSH", "Friday", function (resultfr, fr) {
+									newSchedule = new Schedule({
 										week: {
 											start: firstday,
 											finish: lastday
@@ -242,10 +242,10 @@ function getSchedule(user, callback){
 	});
 }
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect('/login');
 }
 
 module.exports = router;
