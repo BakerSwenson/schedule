@@ -1,109 +1,109 @@
 doctype html
 html(lang="en")
-    head
-        title Class - #{class1.class_name}
-        include partials/scripts.jade
-        link(rel="stylesheet" href="/public/class/css/index.css")
-    body
-        div#container
-            div#leftcontainer
-                div.topnav#navtitle #{class1.class_name}
-                ul.nav
-                    a.navl(href="javascript:void(0)")#linkhome
-                        li.navitem.active
-                            span.pad Home
-                    a.navl(href="javascript:void(0)")#linkpending
-                        li.navitem 
-                            span.pad Pending
-                    a.navl(href="javascript:void(0)")#linkpastclasses
-                        li.navitem 
-                            span.pad Previous Classes
-                    a.navl(href="javascript:void(0)")#linksettings
-                        li.navitem 
-                            span.pad Settings
-                div#faq Have a problem? Look at our 
-                    a(href="#") FAQ
-            div#rightcontainer
-                div.topnav1
-                    img#loadBar(src="/public/images/load.gif" style="display:none;")
-                    div#navlogout
-                        a(href="/logout") Logout
-                div#page
-                    div.page#home
-                        div.siteHeader Dashboard 
-                            if(class1.open)
-                                if(class1.week.next)
-                                    span(style="font-weight: 400; color: #666; font-size: 16px;") ( #{class1.week.next_start.toDateString()} - #{class1.week.next_finish.toDateString()} )
-                                else
-                                    span(style="font-weight: 400; color: #666; font-size: 16px;") ( #{class1.week.start.toDateString()} - #{class1.week.finish.toDateString()} )
-                            else
-                                span(style="font-weight: 400; color: #666; font-size: 16px;") ( Class not open )
+		head
+				title Class - #{class1.class_name}
+				include partials/scripts.jade
+				link(rel="stylesheet" href="/public/class/css/index.css")
+		body
+				div#container
+						div#leftcontainer
+								div.topnav#navtitle #{class1.class_name}
+								ul.nav
+										a.navl(href="javascript:void(0)")#linkhome
+												li.navitem.active
+														span.pad Home
+										a.navl(href="javascript:void(0)")#linkpending
+												li.navitem 
+														span.pad Pending
+										a.navl(href="javascript:void(0)")#linkpastclasses
+												li.navitem 
+														span.pad Previous Classes
+										a.navl(href="javascript:void(0)")#linksettings
+												li.navitem 
+														span.pad Settings
+								div#faq Have a problem? Look at our 
+										a(href="#") FAQ
+						div#rightcontainer
+								div.topnav1
+										img#loadBar(src="/public/images/load.gif" style="display:none;")
+										div#navlogout
+												a(href="/logout") Logout
+								div#page
+										div.page#home
+												div.siteHeader Dashboard 
+														if(class1.open)
+																if(class1.week.next)
+																		span(style="font-weight: 400; color: #666; font-size: 16px;") ( #{class1.week.next_start.toDateString()} - #{class1.week.next_finish.toDateString()} )
+																else
+																		span(style="font-weight: 400; color: #666; font-size: 16px;") ( #{class1.week.start.toDateString()} - #{class1.week.finish.toDateString()} )
+														else
+																span(style="font-weight: 400; color: #666; font-size: 16px;") ( Class not open )
 
-                        if(class1.open)
-                            div.dcontainer
-                                    div.dtext
-                                        div.dbox Class is 
-                                            strong open!
-                                            div Everybody can join. You cannot add default students.
-                                    div.dbtnarea
-                                        a.attendancebutton.dopenbutton(href="/class/#{class1._id}/attendance") Attendance
-                        else
-                            div.dcontainer
-                                div.dtext
-                                    div.dbox Class is 
-                                        strong closed!
-                                        div Nobody can join. You can add default students.
-                                div.dbtnarea.222
-                                    a.dopenbutton(href="#") Open Class
-                            div.ddateselection(style="display: none")
-                                div.dinfo Create class for:
-                                div.dmore
-                                    a(href="#").dleftbtn This Week
-                                    a(href="#").drightbtn Next Week
-                        form#search-bar-form(onsubmit="return false;" style="display: none;")
-                            input#students-search
-                            input(type="submit" value="Search Students")
-                        form#search-bar-form-default_students(onsubmit="return false;" style="display: none;")
-                            input#students-search
-                            input(type="submit" value="Search Students For DEFAULT STUDENTS")
-                        table.t
-                    div.page#pending(style="display: none;")
-                        div.siteHeader Pending Students
-                        table.t
-                    div.page#past-classes(style="display: none;")
-                        div.siteHeader Previous Classes
-                        table.t
-                    div.page#past-class(style="display: none;")
-                        p Past Class
-                        div#classbox
-                            div#pclassname
-                            div#pclasslimit
-                            ul#pclassstudents
-                        table.t
-                    div.page#settings(style="display: none;")
-                        div.siteHeader Settings
-                            form#update-class-name-form(onsubmit="return false;")
-                                p Update Class Name
-                                input(placeholder="New Class Name" type="text")
-                                input(type="submit" value="Update")
-                            form#search-bar-form-teacher(onsubmit="return false;")
-                                p Add teachers...
-                                input(placeholder="Search teacher.")#teachers-search
-                                input(type="submit" value="Search")
+												if(class1.open)
+														div.dcontainer
+																		div.dtext
+																				div.dbox Class is 
+																						strong open!
+																						div Everybody can join. You cannot add default students.
+																		div.dbtnarea
+																				a.attendancebutton.dopenbutton(href="/class/#{class1._id}/attendance") Attendance
+												else
+														div.dcontainer
+																div.dtext
+																		div.dbox Class is 
+																				strong closed!
+																				div Nobody can join. You can add default students.
+																div.dbtnarea.222
+																		a.dopenbutton(href="#") Open Class
+														div.ddateselection(style="display: none")
+																div.dinfo Create class for:
+																div.dmore
+																		a(href="#").dleftbtn This Week
+																		a(href="#").drightbtn Next Week
+												form#search-bar-form(onsubmit="return false;" style="display: none;")
+														input#students-search
+														input(type="submit" value="Search Students")
+												form#search-bar-form-default_students(onsubmit="return false;" style="display: none;")
+														input#students-search
+														input(type="submit" value="Search Students For DEFAULT STUDENTS")
+												table.t
+										div.page#pending(style="display: none;")
+												div.siteHeader Pending Students
+												table.t
+										div.page#past-classes(style="display: none;")
+												div.siteHeader Previous Classes
+												table.t
+										div.page#past-class(style="display: none;")
+												p Past Class
+												div#classbox
+														div#pclassname
+														div#pclasslimit
+														ul#pclassstudents
+												table.t
+										div.page#settings(style="display: none;")
+												div.siteHeader Settings
+														form#update-class-name-form(onsubmit="return false;")
+																p Update Class Name
+																input(placeholder="New Class Name" type="text")
+																input(type="submit" value="Update")
+														form#search-bar-form-teacher(onsubmit="return false;")
+																p Add teachers...
+																input(placeholder="Search teacher.")#teachers-search
+																input(type="submit" value="Search")
 
-                    div.page#search(style="display: none;")
-                        p Search results
-                        a(href="javascript:void[0]")#search-back Back
-                        div.search-header
-                            div#query-search
-                        div#searchResults
-                            table
-                                tr
-                                    th Name
-                                tr
-                                    td Poop
-                                    td 
-                                        button.addBtn(value="#{class1._id}/2452425") ADD
+										div.page#search(style="display: none;")
+												p Search results
+												a(href="javascript:void[0]")#search-back Back
+												div.search-header
+														div#query-search
+												div#searchResults
+														table
+																tr
+																		th Name
+																tr
+																		td Poop
+																		td 
+																				button.addBtn(value="#{class1._id}/2452425") ADD
 
-            footer Made for Winona Area Public Schools
-                    
+						footer Made for Winona Area Public Schools
+

@@ -149,17 +149,17 @@ $(document).ready(function(){
 		setTimeout(function () {
 			$('#loadBar').hide();
 			$.post("/class/ajax/search",
-			{
-			    query: query
-			},
-			function(data, status){
-			    $('#searchResults').append('<table></table>');
-			    data.forEach(function(item){
-			    	var url = window.location.pathname;
-			    	var id = url.split('/')[2];
-			    	$('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="addBtnq" value="'+ id+'/'+ item._id+'">Add</button></td></tr>')
-			    })
-			});
+						 {
+							 query: query
+						 },
+						 function(data, status){
+							 $('#searchResults').append('<table></table>');
+							 data.forEach(function(item){
+								 var url = window.location.pathname;
+								 var id = url.split('/')[2];
+								 $('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="addBtnq" value="'+ id+'/'+ item._id+'">Add</button></td></tr>')
+							 })
+						 });
 		}, 500);
 		$('#query-search').html(query);
 	}
@@ -173,17 +173,17 @@ $(document).ready(function(){
 		setTimeout(function () {
 			$('#loadBar').hide();
 			$.post("/class/ajax/search",
-			{
-			    query: query
-			},
-			function(data, status){
-			    $('#searchResults').append('<table></table>');
-			    data.forEach(function(item){
-			    	var url = window.location.pathname;
-			    	var id = url.split('/')[2];
-			    	$('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="defaultBtn" value="'+ id+'/'+ item._id+'">Add Default Student</button></td>/tr>')
-			    })
-			});
+						 {
+							 query: query
+						 },
+						 function(data, status){
+							 $('#searchResults').append('<table></table>');
+							 data.forEach(function(item){
+								 var url = window.location.pathname;
+								 var id = url.split('/')[2];
+								 $('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="defaultBtn" value="'+ id+'/'+ item._id+'">Add Default Student</button></td>/tr>')
+							 })
+						 });
 		}, 500);
 		$('#query-search').html(query);
 	}
@@ -191,10 +191,10 @@ $(document).ready(function(){
 	function updateClassName(new_name) {
 		var id = window.location.pathname.split('/')[2];
 		$.post("/class/change_name",
-		       {
-			       classID: id,
-			       class_name: new_name
-		       });
+					 {
+						 classID: id,
+						 class_name: new_name
+					 });
 		location.reload();
 	}
 
@@ -206,17 +206,17 @@ $(document).ready(function(){
 		setTimeout(function () {
 			$('#loadBar').hide();
 			$.post("/class/ajax/search/t",
-			{
-			    query: query
-			},
-			function(data, status){
-			    $('#searchResults').append('<table></table>');
-			    data.forEach(function(item){
-			    	var url = window.location.pathname;
-			    	var id = url.split('/')[2];
-			    	$('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="teacherBtn" value="'+ id+'/'+ item._id+'">Add TEACHER</button></td>/tr>')
-			    })
-			});
+						 {
+							 query: query
+						 },
+						 function(data, status){
+							 $('#searchResults').append('<table></table>');
+							 data.forEach(function(item){
+								 var url = window.location.pathname;
+								 var id = url.split('/')[2];
+								 $('#searchResults > table').append('<tr><td>' + item.fullname+'</td><td><button class="teacherBtn" value="'+ id+'/'+ item._id+'">Add TEACHER</button></td>/tr>')
+							 })
+						 });
 		}, 500);
 		$('#query-search').html(query);
 	}
@@ -227,12 +227,12 @@ $(document).ready(function(){
 		setTimeout(function () {
 			$('#loadBar').hide();
 			$.get("/class/ajax/log/"+id,
-			function(data, status){
-				$('#loadBar').hide();
-				console.log(data);
-				$('#past-class').show();
-				$('#pclassname').html(data.className);
-			});
+						function(data, status){
+							$('#loadBar').hide();
+							console.log(data);
+							$('#past-class').show();
+							$('#pclassname').html(data.className);
+						});
 		}, 500);
 	}
 
@@ -282,50 +282,50 @@ $(document).ready(function(){
 		renderPage('home');
 	})
 	$('#search-bar-form').submit(function() {
-	    // Get all the forms elements and their values in one step
-	    renderPage('search');
+		// Get all the forms elements and their values in one step
+		renderPage('search');
 	});
 	$('#update-class-name-form').submit(function () {
 		updateClassName($(this).find("input").val());
 	});
 	$('#search-bar-form-teacher').submit(function() {
-	    // Get all the forms elements and their values in one step
-	    console.log('MADE IT HERE2');
-	    renderPage('searchTeacher');
+		// Get all the forms elements and their values in one step
+		console.log('MADE IT HERE2');
+		renderPage('searchTeacher');
 	});
 	$('#search-bar-form-default_students').submit(function() {
-	    // Get all the forms elements and their values in one step
-	    renderPage('searchDefault');
+		// Get all the forms elements and their values in one step
+		renderPage('searchDefault');
 	});
 	$(document).on("click", ".addBtnq", function(){
 		$.get( "/class/ajax/add/"+ $(this).val(), function( data ) {
-	  		console.log('Student Added');
-	  		renderPage('home');
+			console.log('Student Added');
+			renderPage('home');
 		});
 	})
 	$(document).on("click", ".addBtn", function(){
 		$.get( "/class/ajax/add/"+ $(this).val(), function( data ) {
-	  		console.log('Student Added');
-	  		renderPage('pending');
+			console.log('Student Added');
+			renderPage('pending');
 		});
 	})
 	$(document).on("click", ".defaultBtn", function(){
 		$.get( "/class/ajax/add-default-student/"+ $(this).val(), function( data ) {
 			renderPage('home');
-	  		console.log('Added default student!');
+			console.log('Added default student!');
 		});
 	})
 	$(document).on("click", ".teacherBtn", function(){
 		console.log('Adding teacher');
 		$.get( "/class/ajax/add-teacher/"+ $(this).val(), function( data ) {
 			renderPage('home');
-	  		console.log('Added new teacher');
+			console.log('Added new teacher');
 		});
 	})
 	$(document).on("click", ".removeBtn", function(){
 		$.get( "/class/ajax/remove/"+ $(this).val(), function( data ) {
 			renderPage('home');
-	  		console.log('Removed Student From Class I think');
+			console.log('Removed Student From Class I think');
 		});
 	})
 	$(document).on("click", ".viewCLASS", function(){
@@ -336,16 +336,16 @@ $(document).ready(function(){
 	$(document).on("click", ".removeDefaultBtn", function(){
 		$.get( "/class/ajax/remove/"+ $(this).val()+"?default_student=true", function( data ) {
 			renderPage('home');
-	  		console.log('Removed Student From Class I think');
+			console.log('Removed Student From Class I think');
 		});
 	})
 
 	/*$('.dopenbutton').click(function() {
-		$('.ddateselection').slideToggle( "slow", function() {
-		    // Animation complete.
-		  });
-	})
-	*/
+	 $('.ddateselection').slideToggle( "slow", function() {
+	 // Animation complete.
+	 });
+	 })
+	 */
 	$('.attendancebutton').click(function() {
 		var url = window.location.pathname;
 		var Surl =  url +"/attendance";

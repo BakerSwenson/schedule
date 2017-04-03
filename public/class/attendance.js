@@ -8,23 +8,23 @@ $.get( "/class/ajax/class/"+id, function( class1) {
 		window.location = '/class';
 	}
 	var students = class1.students;
-		students.forEach(function(item){
+	students.forEach(function(item){
 		$('ul').append('<li>' + item.fullname+' <select name="'+ item._id +'"><option selected="selected">Here</option><option>Tardy</option><option>Absent</option></select></li>');
-	
+		
 	});
-		Date.prototype.yyyymmdd = function() {
-		  var mm = this.getMonth() + 1; // getMonth() is zero-based
-		  var dd = this.getDate();
+	Date.prototype.yyyymmdd = function() {
+		var mm = this.getMonth() + 1; // getMonth() is zero-based
+		var dd = this.getDate();
 
-		  return [this.getFullYear() + '',
-		          (mm>9 ? '' : '0')  +mm,
-		          (dd>9 ? '' : '0')  +dd
-		         ].join('-');
-		};
+		return [this.getFullYear() + '',
+						(mm>9 ? '' : '0')  +mm,
+						(dd>9 ? '' : '0')  +dd
+					 ].join('-');
+	};
 
-		var start = class1.week.start;
-		var finish = class1.week.finish;
-		var startd = new Date(start);
-		var finishd = new Date(finish);
-		$('.stamp').html('( '+startd.yyyymmdd()+' : ' +finishd.yyyymmdd()+' )');
+	var start = class1.week.start;
+	var finish = class1.week.finish;
+	var startd = new Date(start);
+	var finishd = new Date(finish);
+	$('.stamp').html('( '+startd.yyyymmdd()+' : ' +finishd.yyyymmdd()+' )');
 })

@@ -1,81 +1,81 @@
 doctype html
 html(lang="en")
-    head
-        title Template Maker
-        include partials/scripts.jade
-        link(rel="stylesheet" href="/public/template/css/new.css")
-    body
-        div
-            div
-                a(href="/template/new") Create
-            div
-                select 
-                    option(value="1" disabled selected) Select Template
-                    - each template, i in templates
-                            option(value="#{template._id}") #{template.name}
-            div#loading(style="display: none;")
-                img(src="/public/images/load.gif")
-                br
-            table(border="1" style="display: none;")
-                tr
-                    th.blank
-                    th.monday
-                        div.checkbox
-                            input#monday(type="checkbox" name="monday")
-                        div.name#mondaylabel Monday
-                    th.tuesday
-                        div.checkbox
-                            input#tuesday(type="checkbox" name="tuesday")
-                        div.name#tuesdaylabel Tuesday
-                    th.wednesday
-                        div.checkbox
-                            input#wednesday(type="checkbox" name="wednesday")
-                        div.name#wednesdaylabel Wednesday
-                    th.thursday
-                        div.checkbox
-                            input#thursday(type="checkbox" name="thursday")
-                        div.name#thursdaylabel Thursday
-                    th.friday
-                        div.checkbox
-                            input#friday(type="checkbox" name="friday" checked="checked")
-                        div.name#fridaylabel Friday
-                tr
-                    th.label GSH
-                    td
-                        div.time.GSH
-                            div.hour Time:
-                            div.start
-                                input#mondayGSHstart.GSHstart(name="mondayGSHstart" value="" disabled)
-                            div.end
-                                input#mondayGSHend.GSHend(name="mondayGSHend" value="" disabled)
-                    td
-                        div.time.GSH
-                            div.hour Time:
-                            div.start
-                                input#tuesdayGSHstart.GSHstart(name="tuesdayGSHstart" value="" disabled)
-                            div.end
-                                input#tuesdayGSHend.GSHend(name="tuesdayGSHend" value="" disabled)
-                    td
-                        div.time.GSH
-                            div.hour Time:
-                            div.start
-                                input#wednesdayGSHstart.GSHstart(name="wednesdayGSHstart" value="" disabled)
-                            div.end
-                                input#wednesdayGSHend.GSHend(name="wednesdayGSHend" value="" disabled)
-                    td
-                        div.time.GSH
-                            div.hour Time:
-                            div.start
-                                input#thursdayGSHstart.GSHstart(name="thursdayGSHstart" value="" disabled)
-                            div.end
-                                input#thursdayGSHend.GSHend(name="thursGSHend" value="" disabled)
-                    td
-                        div.time.GSH
-                            div.hour Time:
-                            div.start
-                                input#fridayGSHstart.GSHstart(name="fridayGSHstart" value="" disabled)
-                            div.end
-                                input#fridayGSHend.GSHend(name="fridayGSHend" value="" disabled)
-                    a#active(href="#" style="color: blue; text-decoration: none;")
-                    span    
-                    a#delete(href="#" style="color: red; text-decoration: none")
+		head
+				title Template Maker
+				include partials/scripts.jade
+				link(rel="stylesheet" href="/public/template/css/new.css")
+		body
+				div
+						div
+								a(href="/template/new") Create
+						div
+								select 
+										option(value="1" disabled selected) Select Template
+										- each template, i in templates
+														option(value="#{template._id}") #{template.name}
+						div#loading(style="display: none;")
+								img(src="/public/images/load.gif")
+								br
+						table(border="1" style="display: none;")
+								tr
+										th.blank
+										th.monday
+												div.checkbox
+														input#monday(type="checkbox" name="monday")
+												div.name#mondaylabel Monday
+										th.tuesday
+												div.checkbox
+														input#tuesday(type="checkbox" name="tuesday")
+												div.name#tuesdaylabel Tuesday
+										th.wednesday
+												div.checkbox
+														input#wednesday(type="checkbox" name="wednesday")
+												div.name#wednesdaylabel Wednesday
+										th.thursday
+												div.checkbox
+														input#thursday(type="checkbox" name="thursday")
+												div.name#thursdaylabel Thursday
+										th.friday
+												div.checkbox
+														input#friday(type="checkbox" name="friday" checked="checked")
+												div.name#fridaylabel Friday
+								tr
+										th.label GSH
+										td
+												div.time.GSH
+														div.hour Time:
+														div.start
+																input#mondayGSHstart.GSHstart(name="mondayGSHstart" value="" disabled)
+														div.end
+																input#mondayGSHend.GSHend(name="mondayGSHend" value="" disabled)
+										td
+												div.time.GSH
+														div.hour Time:
+														div.start
+																input#tuesdayGSHstart.GSHstart(name="tuesdayGSHstart" value="" disabled)
+														div.end
+																input#tuesdayGSHend.GSHend(name="tuesdayGSHend" value="" disabled)
+										td
+												div.time.GSH
+														div.hour Time:
+														div.start
+																input#wednesdayGSHstart.GSHstart(name="wednesdayGSHstart" value="" disabled)
+														div.end
+																input#wednesdayGSHend.GSHend(name="wednesdayGSHend" value="" disabled)
+										td
+												div.time.GSH
+														div.hour Time:
+														div.start
+																input#thursdayGSHstart.GSHstart(name="thursdayGSHstart" value="" disabled)
+														div.end
+																input#thursdayGSHend.GSHend(name="thursGSHend" value="" disabled)
+										td
+												div.time.GSH
+														div.hour Time:
+														div.start
+																input#fridayGSHstart.GSHstart(name="fridayGSHstart" value="" disabled)
+														div.end
+																input#fridayGSHend.GSHend(name="fridayGSHend" value="" disabled)
+										a#active(href="#" style="color: blue; text-decoration: none;")
+										span    
+										a#delete(href="#" style="color: red; text-decoration: none")

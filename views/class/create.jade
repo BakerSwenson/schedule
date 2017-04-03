@@ -1,26 +1,26 @@
 doctype html
 html(lang="en")
-    head
-        title Create a Class!
-        include partials/scripts.jade
-        link(rel="stylesheet" href="/public/class/css/create.css")
-    body
-        form#create( type="form" action='/class/create' method='post' enctype='application/x-www-form-urlencoded' )
-            input#ClassName(type="text" name="class_name" placeholder="Name of class ex. Baker's GSH", maxlength="25")
-            input#ClassLimit(type="number" name="limit" placeholder="Limit of Students")
-            select(name="day")
-                option(disabled selected) Choose Day
-                option(disabled) Monday
-                option(disabled) Tuesday
-                option Wednesday
-                option(disabled) Thursday
-                option(disabled) Friday
-            select(name="hour")
-                option(disabled selected) Choose Hour
-                option(disabled) Hour 1
-                option(disabled) Hour 2
-                option(disabled) Hour 3
-                option GSH
-                option(disabled) Hour 4
-                option(disabled) Hour 5
-            input(type="submit" value="Submit")
+		head
+				title Create a Class!
+				include partials/scripts.jade
+				link(rel="stylesheet" href="/public/class/css/create.css")
+		body
+				form#create( type="form" action='/class/create' method='post' enctype='application/x-www-form-urlencoded' )
+						input#ClassName(type="text" name="class_name" placeholder="Name of class ex. Baker's GSH", maxlength="25")
+						input#ClassLimit(type="number" name="limit" placeholder="Limit of Students")
+						select(name="day")
+								option(disabled selected) Choose Day
+								option(disabled) Monday
+								option(disabled) Tuesday
+								option Wednesday
+								option(disabled) Thursday
+								option(disabled) Friday
+						select(name="hour")
+								option(disabled selected) Choose Hour
+								option(disabled) Hour 1
+								option(disabled) Hour 2
+								option(disabled) Hour 3
+								option GSH
+								option(disabled) Hour 4
+								option(disabled) Hour 5
+						input(type="submit" value="Submit")

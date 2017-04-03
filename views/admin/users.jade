@@ -18,6 +18,8 @@ html(lang="en")
 						form( type="form" action='/admin/users' method='post' enctype='application/x-www-form-urlencoded' )
 								input(name="name" type="text" placeholder="Email")
 					div.optBtn
+						a.btn(href="/admin") Everyone
+					div.optBtn
 						a.btn(href="/admin/sort/teacher") Teachers
 					div.optBtn
 						a.btn(href="/admin/sort/admin") Admins
@@ -39,7 +41,7 @@ html(lang="en")
 												else if(user.permissions.view_absents)
 													span ABSENT VIEWER
 												else
-													span USER
+													span STUDENT
 											td
 												p #{user.name.first} #{user.name.last}
 											td

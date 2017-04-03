@@ -87,23 +87,23 @@ $(document).ready(function(){
 		}
 	});
 	$(document).mouseup(function (e)
-		{
+											{
 		var container = $("table");
 		var container1 = $("#classForm");
 
-	    if (!container1.is(e.target) // if the target of the click isn't the container...
-	        && container1.has(e.target).length === 0 ) // ... nor a descendant of the container
-	    {
-	    	if (!container.is(e.target) // if the target of the click isn't the container...
-	        && container.has(e.target).length === 0 ) // ... nor a descendant of the container
-	    {
-	        console.log('unselect day');
-	        $('#searchTeacher').val('');
-			$("td").removeClass('selectedClass');
-			$("th").removeClass('selectedHeader');
-			$("#classForm").fadeOut( "fast" );
+		if (!container1.is(e.target) // if the target of the click isn't the container...
+				&& container1.has(e.target).length === 0 ) // ... nor a descendant of the container
+		{
+			if (!container.is(e.target) // if the target of the click isn't the container...
+					&& container.has(e.target).length === 0 ) // ... nor a descendant of the container
+			{
+				console.log('unselect day');
+				$('#searchTeacher').val('');
+				$("td").removeClass('selectedClass');
+				$("th").removeClass('selectedHeader');
+				$("#classForm").fadeOut( "fast" );
+			}
 		}
-	    }
 	});
 	$('#searchTeacherBtn').click(function() {
 		searchClasses();
@@ -133,34 +133,34 @@ $(document).ready(function(){
 	}
 	function populateSchedule() {
 		$.get( "/schedule/ajax/schedule", function( schedule ) {
-	  		console.log("Populating Schedule");
-	  		//disable no ever days
-	  		$('.2 td').addClass('d').html('');
-	  		$('.2 td').addClass('dr').html('');
-	  		$('.3 td').addClass('d').html('');
-	  		$('.3 td').addClass('dr').html('');
-	  		$('.4 td').addClass('d').html('');
-	  		$('.4 td').addClass('dr').html('');
-	  		//skip five bc gsh
-	  		$('.6 td').addClass('d').html('');
-	  		$('.6 td').addClass('dr').html('');
-	  		$('.7 td').addClass('d').html('');
-	  		$('.7 td').addClass('dr').html('');
-	  		$('#m-S').addClass('d').html('');
-	  		$('#tu-S').addClass('d').html('');
-	  		$('#th-S').addClass('d').html('');
-	  		$('#f-S').addClass('d').html('');
-	  		var changeW = (schedule.Wednesday.GSH.teacher_add ? "" : "checked='checked'");
-	  		var pendingW = (schedule.Wednesday.GSH.pending ? "classPending" : "");
-	  		$('#w-S').html(`
-				  <div class="body ${pendingW}">
-				    <div class="class">
-				      <div class="className">${schedule.Wednesday.GSH.class.class_name}</div>
-				    </div>
-				    <div class="changeable">Overridable</div>
-				    <input type="checkbox" disabled="disabled" ${changeW}/>
-				  </div>
-	  			`);
+			console.log("Populating Schedule");
+			//disable no ever days
+			$('.2 td').addClass('d').html('');
+			$('.2 td').addClass('dr').html('');
+			$('.3 td').addClass('d').html('');
+			$('.3 td').addClass('dr').html('');
+			$('.4 td').addClass('d').html('');
+			$('.4 td').addClass('dr').html('');
+			//skip five bc gsh
+			$('.6 td').addClass('d').html('');
+			$('.6 td').addClass('dr').html('');
+			$('.7 td').addClass('d').html('');
+			$('.7 td').addClass('dr').html('');
+			$('#m-S').addClass('d').html('');
+			$('#tu-S').addClass('d').html('');
+			$('#th-S').addClass('d').html('');
+			$('#f-S').addClass('d').html('');
+			var changeW = (schedule.Wednesday.GSH.teacher_add ? "" : "checked='checked'");
+			var pendingW = (schedule.Wednesday.GSH.pending ? "classPending" : "");
+			$('#w-S').html(`
+					<div class="body ${pendingW}">
+						<div class="class">
+							<div class="className">${schedule.Wednesday.GSH.class.class_name}</div>
+						</div>
+						<div class="changeable">Overridable</div>
+						<input type="checkbox" disabled="disabled" ${changeW}/>
+					</div>
+					`);
 		});
 	};
 	function broadcast(msg, color){
@@ -174,9 +174,9 @@ $(document).ready(function(){
 	$(document).on("click", ".joinClass", function(){
 		console.log($(this).val());
 		$.get( "/schedule/ajax/add/"+ $(this).val(), function( data ) {
-	  		console.log('Added default student!');
-	  		broadcast(data.msg, data.color);
-	  		populateSchedule();
+			console.log('Added default student!');
+			broadcast(data.msg, data.color);
+			populateSchedule();
 		});
 	})
 });
